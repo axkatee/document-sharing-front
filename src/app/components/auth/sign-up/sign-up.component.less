@@ -1,0 +1,100 @@
+.shadow-block {
+  top: calc(-30px + 15%);
+  left: calc(30px + 26%);
+  position: absolute;
+  width: 562px;
+  height: 630px;
+  background-color: #C4C4C4;
+  border-radius: 10px;
+}
+
+.sign-up-block {
+  display: flex;
+  flex-direction: column;
+  top: 15%;
+  left: 26%;
+  position: absolute;
+  width: 562px;
+  height: 630px;
+  background-color: white;
+  border-radius: 10px;
+
+  .title {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 38px;
+    line-height: 60px;
+  }
+
+  .form-block {
+    text-align: center;
+
+    .name-block {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      .small-input {
+        width: 212px;
+        &:first-child {
+          margin-right: 17px;
+        }
+      }
+    }
+
+    .custom-input {
+      margin-bottom: 22px;
+      width: 470px;
+      align-self: center;
+    }
+  }
+
+  .avatar-block {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 46px;
+    justify-content: center;
+    align-items: center;
+
+    .avatar-skeleton {
+      margin-right: 38px;
+    }
+
+    .description-block {
+      display: flex;
+      flex-direction: column;
+
+      .custom-button {
+        width: 350px;
+        height: 31px;
+        padding-top: 7px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .description {
+        font-size: 13px;
+      }
+    }
+  }
+
+  .action-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .custom-button {
+      margin-right: 17px;
+      width: 217px;
+    }
+
+    .sign-up-navigation {
+      font-size: 14px;
+    }
+  }
+}

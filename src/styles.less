@@ -1,1 +1,81 @@
-/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body {
+  background-attachment: fixed;
+  overflow: hidden;
+  background-color: black;
+  font-family: 'Recursive', monospace;
+  font-weight: 300;
+}
+
+.custom-input {
+  font-size: 15px;
+  border: 1px solid black;
+  font-family: 'Recursive', monospace;
+  line-height: 24px;
+  font-weight: 300;
+  outline: none;
+  padding: 12px;
+  height: 22px;
+  border-radius: 2px;
+
+  &:focus {
+    transition: .3s;
+    box-shadow: 0 0 5px 4px rgba(126, 11, 166, 0.25);
+  }
+
+  &.ng-touched.ng-invalid{
+    transition: .3s;
+    box-shadow: 0 0 5px 2px rgba(255, 0, 0, 0.43);
+  }
+}
+
+.error {
+  box-shadow: 0 0 5px 2px rgba(255, 0, 0, 0.43);
+}
+
+.custom-button {
+  background: rgba(126, 11, 166, 0.25);
+  border-radius: 2px;
+  height: 38px;
+  border: none;
+  font-family: 'Recursive', sans-serif;
+  font-weight: 300;
+  font-size: 20px;
+
+  &:hover {
+    transition: .3s;
+    cursor: pointer;
+    box-shadow: 0 0 1px 1px #000000;
+  }
+}
+
+.underline-text {
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 20px;
+  text-decoration-line: underline;
+  color: #7E0BA6;
+
+  &:hover {
+    text-shadow: 1px 2px 3px rgba(126, 11, 166, 0.3);
+    cursor: pointer;
+  }
+}
+
+.avatar-skeleton {
+  object-fit: cover;
+  width: 112px;
+  height: 112px;
+  background-color: rgba(126, 11, 166, 0.1);
+  border-radius: 50%;
+
+  &:hover {
+    transition: .5s;
+    box-shadow: 0 0 10px 3px rgba(221, 124, 255, 0.54);
+    cursor: pointer;
+  }
+}
+
+.hidden-btn {
+  display: none;
+}
