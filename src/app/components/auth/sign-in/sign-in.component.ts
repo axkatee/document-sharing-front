@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from "@angular/router";
-import { FormService } from "../../../services/form-service/form.service";
 import { FormGroup } from "@angular/forms";
+import { FormService } from "../../../services/form-service/form.service";
 import { AuthService } from "../../../services/auth-service/auth.service";
 
 @Component({
@@ -29,7 +29,8 @@ export class SignInComponent {
     const password = this.loginForm.controls['password'].value.toString();
 
     this.authService.signIn(email, password).subscribe(res => {
-      localStorage.setItem('auth_data', res);
+      localStorage.setItem('auth_data', '12345');
+      this.router.navigate(['dashboard']).then();
     });
   }
 }

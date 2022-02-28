@@ -1,18 +1,18 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { BehaviorSubject } from "rxjs";
+import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
 import { Router } from "@angular/router";
 import { FormGroup } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { BehaviorSubject } from "rxjs";
 import { FormService } from "../../../services/form-service/form.service";
-import { notificationConfig } from "../../../config";
 import { AuthService } from "../../../services/auth-service/auth.service";
+import { notificationConfig } from "../../../config";
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.less']
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnDestroy {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   public registrationForm: FormGroup;
@@ -27,6 +27,11 @@ export class SignUpComponent {
     private authService: AuthService
   ) {
     this.registrationForm = this.formService.registrationForm();
+  }
+
+  ngOnDestroy() {
+    this.imagePath.unsubscribe();
+    this.isUserHasAvatar.unsubscribe();
   }
 
   signUp(): void {

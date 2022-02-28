@@ -58,7 +58,9 @@ export class FormService {
         Validators.maxLength(32),
 
       ]),
-    }, {validators: this.validatePasswords()})
+    }, {
+        validators: this.validatePasswords()
+      })
   }
 
   validatePasswords(): ValidatorFn | null {
@@ -68,6 +70,4 @@ export class FormService {
       return password === repeatPassword ? null : { notSame: true };
     };
   }
-
-
 }
