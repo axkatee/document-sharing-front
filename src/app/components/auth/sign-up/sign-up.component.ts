@@ -1,11 +1,11 @@
-import {Component, ElementRef, OnDestroy, ViewChild} from '@angular/core';
-import { Router } from "@angular/router";
-import { FormGroup } from "@angular/forms";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { BehaviorSubject } from "rxjs";
-import { FormService } from "../../../services/form-service/form.service";
-import { AuthService } from "../../../services/auth-service/auth.service";
-import { notificationConfig } from "../../../config";
+import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { BehaviorSubject } from 'rxjs';
+import { FormService } from '../../../services/form-service/form.service';
+import { AuthService } from '../../../services/auth-service/auth.service';
+import { notificationConfig } from '../../../config';
 
 @Component({
   selector: 'app-sign-up',
@@ -41,8 +41,9 @@ export class SignUpComponent implements OnDestroy {
     const password = this.registrationForm.controls['password'].value.toString();
 
     this.authService.signUp(fullName, email, password, this.imagePath.value.toString(), displayName).subscribe(() => {
-      this.navigateToSignIn();
+
     });
+    this.navigateToSignIn();
   }
 
   navigateToSignIn(): void {

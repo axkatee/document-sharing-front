@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { EMPTY } from "rxjs";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { EMPTY } from 'rxjs';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
@@ -31,8 +31,7 @@ describe('AuthService', () => {
   });
 
   it('should be created', () => {
-    service.getTokenFromLocalStorage();
-    const token = service.authToken;
+    const token = service.getTokenFromLocalStorage();
     expect(token).not.toBeNull();
   });
 });

@@ -7,7 +7,7 @@ import {
   ValidationErrors,
   ValidatorFn,
   Validators
-} from "@angular/forms";
+} from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'

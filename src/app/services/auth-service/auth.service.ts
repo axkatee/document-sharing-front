@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { catchError, Observable, throwError } from "rxjs";
-import { environment } from "../../../environments/environment";
-import { notificationConfig } from "../../config";
+import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { catchError, Observable, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { notificationConfig } from '../../config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public authToken: string = '';
+  public authToken = '';
 
   constructor(
     private http: HttpClient,
     private notification: MatSnackBar
   ) { }
 
-  getTokenFromLocalStorage(): void {
-    this.authToken = localStorage.getItem('auth_data') || '';
+  getTokenFromLocalStorage(): string {
+    return localStorage.getItem('auth_data') || '';
   }
 
   signIn(email: string, password: string): Observable<any> {

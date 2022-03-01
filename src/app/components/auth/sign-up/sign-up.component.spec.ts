@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { RouterTestingModule } from "@angular/router/testing";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { BehaviorSubject, Observable, of } from "rxjs";
-import { AuthService } from "../../../services/auth-service/auth.service";
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { AuthService } from '../../../services/auth-service/auth.service';
 import { SignUpComponent } from './sign-up.component';
-import { IFile } from "../../../interfaces/interface";
+import { IFile } from '../../../interfaces/file-interface';
 
 describe('SignUpComponent', () => {
   let component: SignUpComponent;

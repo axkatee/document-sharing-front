@@ -3,7 +3,7 @@ import { Routes } from "@angular/router";
 import { AuthGuard } from "./auth.guard";
 import { SignInComponent } from "./components/auth/sign-in/sign-in.component";
 import { SignUpComponent } from "./components/auth/sign-up/sign-up.component";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const notificationConfig: MatSnackBarConfig = {
   duration: 3000,

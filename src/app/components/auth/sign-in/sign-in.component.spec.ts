@@ -1,12 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { RouterTestingModule } from "@angular/router/testing";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { Observable, of } from "rxjs";
-import { AuthService } from "../../../services/auth-service/auth.service";
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { AuthService } from '../../../services/auth-service/auth.service';
 import { SignInComponent } from './sign-in.component';
-import { routes } from "../../../config";
+import { routes } from '../../../config';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;

@@ -1,12 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { RouterTestingModule } from "@angular/router/testing";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { DashboardComponent } from './dashboard.component';
-import { routes } from "../../config";
-import {SignInComponent} from "../auth/sign-in/sign-in.component";
-import {SignUpComponent} from "../auth/sign-up/sign-up.component";
-import {AuthGuard} from "../../auth.guard";
+import { routes } from '../../config';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
