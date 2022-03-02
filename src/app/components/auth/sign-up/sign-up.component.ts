@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,7 +12,7 @@ import { notificationConfig } from '../../../config';
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.less']
 })
-export class SignUpComponent implements OnDestroy {
+export class SignUpComponent {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   public registrationForm: FormGroup;
@@ -29,11 +29,6 @@ export class SignUpComponent implements OnDestroy {
     this.registrationForm = this.formService.registrationForm();
   }
 
-  ngOnDestroy() {
-    this.imagePath.unsubscribe();
-    this.isUserHasAvatar.unsubscribe();
-  }
-
   signUp(): void {
     const fullName = this.registrationForm.controls['fullName'].value.toString();
     const displayName = this.registrationForm.controls['displayName'].value.toString();
@@ -41,16 +36,15 @@ export class SignUpComponent implements OnDestroy {
     const password = this.registrationForm.controls['password'].value.toString();
 
     this.authService.signUp(fullName, email, password, this.imagePath.value.toString(), displayName).subscribe(() => {
-
+      this.navigateToSignIn();
     });
-    this.navigateToSignIn();
   }
 
   navigateToSignIn(): void {
     this.router.navigate(['login']).then();
   }
 
-  getImageValue(file = this.fileInput.nativeElement.files[0]): void {
+  getImage(file = this.fileInput.nativeElement.files[0]): void {
     const extension = `.${file?.type.split('/').pop()}`;
     let allowedExtensions = this.acceptedExtensions.split(', ');
     if (!allowedExtensions.includes(extension)) {

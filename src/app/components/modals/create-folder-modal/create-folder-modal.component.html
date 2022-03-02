@@ -1,7 +1,7 @@
 <div class="dialog">
   <div mat-dialog-title
        class="title">
-    Edit name
+    Create folder
   </div>
   <form class="form-block"
         [formGroup]="editNameForm">
@@ -17,7 +17,7 @@
     </div>
     <button class="custom-button"
             [disabled]="editNameForm.invalid"
-            (click)="editFolderName()">
+            (click)="createFolder()">
       Save
     </button>
   </div>

@@ -1,19 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EditNameModalComponent } from './edit-name-modal.component';
 
-describe('EditNameModalComponent', () => {
-  let component: EditNameModalComponent;
-  let fixture: ComponentFixture<EditNameModalComponent>;
+import { SidenavMenuComponent } from './sidenav-menu.component';
+
+describe('SidenavMenuComponent', () => {
+  let component: SidenavMenuComponent;
+  let fixture: ComponentFixture<SidenavMenuComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditNameModalComponent ]
+      declarations: [ SidenavMenuComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditNameModalComponent);
+    fixture = TestBed.createComponent(SidenavMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -29,9 +29,8 @@ export class SignInComponent {
     const password = this.loginForm.controls['password'].value.toString();
 
     this.authService.signIn(email, password).subscribe(res => {
-
+      localStorage.setItem('auth_data', res.jwt);
+      this.router.navigate(['dashboard']).then();
     });
-    localStorage.setItem('auth_data', '12345');
-    this.router.navigate(['dashboard']).then();
   }
 }

@@ -20,6 +20,7 @@ export class FormService {
     return new FormBuilder().group({
       email: new FormControl('', [
         Validators.required,
+        Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
         Validators.minLength(4),
         Validators.maxLength(32)
       ]),
@@ -44,6 +45,7 @@ export class FormService {
       ]),
       email: new FormControl('', [
         Validators.required,
+        Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
         Validators.minLength(4),
         Validators.maxLength(32)
       ]),
@@ -69,5 +71,15 @@ export class FormService {
       const repeatPassword = control.get('repeatPassword').value;
       return password === repeatPassword ? null : { notSame: true };
     };
+  }
+
+  public editNameForm(): FormGroup {
+    return new FormBuilder().group({
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(32)
+      ])
+    });
   }
 }

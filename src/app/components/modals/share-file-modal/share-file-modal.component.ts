@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-share-file-modal',
   templateUrl: './share-file-modal.component.html',
   styleUrls: ['./share-file-modal.component.less']
 })
-export class ShareFileModalComponent implements OnInit {
+export class ShareFileModalComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

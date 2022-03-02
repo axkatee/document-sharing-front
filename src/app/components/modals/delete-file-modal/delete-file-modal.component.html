@@ -1,1 +1,16 @@
-<p>delete-file-modal works!</p>
+<div class="dialog">
+  <div mat-dialog-title
+       class="title">
+    Delete {{name}}?
+  </div>
+  <div class="action-btns">
+    <div class="underline-text"
+         (click)="closeDialog()">
+      Close
+    </div>
+    <div class="custom-button"
+         (click)="closeDialog(data.id)">
+      Delete
+    </div>
+  </div>
+</div>

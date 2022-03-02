@@ -1,3 +1,136 @@
-.sign-out {
-  color: white;
+.main-block {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .dashboard-page {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px 90px 46px 0;
+
+    .top-block {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 30px;
+
+      .title {
+        color: white;
+        font-family: Roboto, sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 26px;
+      }
+
+      .create-folder {
+        font-size: 18px;
+        color: #F4D6FF;
+
+        &:hover {
+          font-weight: 400;
+        }
+      }
+    }
+
+    .folders-block {
+      overflow-y: auto;
+
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 100px;
+        background-image: linear-gradient(180deg, #d2d2d2 -12.54%, #818181 100%);
+      }
+
+      .folder {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        height: 49px;
+        background-color: white;
+        border-radius: 8px;
+        margin-bottom: 20px;
+
+        &:hover {
+          background-color: #fbf1ff;
+          box-shadow: 0 0 7px 7px rgba(255, 255, 255, 0.3);
+          cursor: pointer;
+        }
+
+        .folder-name {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-left: 13px;
+
+          .folder-img {
+            width: 27px;
+            height: 27px;
+            margin-right: 13px;
+          }
+
+          .name {
+            font-size: 19px;
+          }
+        }
+
+        .action-btns {
+          margin-right: 13px;
+          //max-width: 128px;
+          //min-width: 128px;
+          //max-height: 40px;
+          //min-height: 40px;
+
+          .download-img {
+            margin-bottom: -3px;
+          }
+        }
+      }
+
+      .files-block {
+        display: flex;
+        flex-direction: row;
+
+        .add-file-block {
+          width: 200px;
+          height: 122px;
+          border: 5px dashed #FFFFFF;
+          border-radius: 10px;
+          text-align: center;
+          cursor: pointer;
+          margin: 17px;
+
+          &:hover {
+            opacity: 0.8;
+            border: 5px dashed #F4D6FF;
+          }
+
+          img {
+            margin: 13% 0;
+          }
+        }
+
+        .file {
+          width: 200px;
+          height: 122px;
+          background-color: white;
+          margin: 17px;
+          border-radius: 10px;
+          text-align: center;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.image {
+  transform: scale(75%);
 }

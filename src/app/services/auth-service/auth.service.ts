@@ -9,7 +9,6 @@ import { notificationConfig } from '../../config';
   providedIn: 'root'
 })
 export class AuthService {
-  public authToken = '';
 
   constructor(
     private http: HttpClient,
@@ -21,7 +20,7 @@ export class AuthService {
   }
 
   signIn(email: string, password: string): Observable<any> {
-    return this.http.get(environment.apiUrl + `auth/login?email=${email}&password=${password}`).pipe(
+    return this.http.get(environment.apiUrl + `auth/signin?email=${email}&password=${password}`).pipe(
       catchError(error => {
         this.notification.open(error.error.message, 'ok', notificationConfig);
         return throwError(error);
@@ -29,7 +28,7 @@ export class AuthService {
   }
 
   signUp(fullName: string, email: string, password: string, avatar?: string, displayName?: string): Observable<any> {
-    return this.http.post(environment.apiUrl + '', { fullName, email, password, avatar: avatar || '', displayName: displayName || '' }).pipe(
+    return this.http.post(environment.apiUrl + 'auth/signup', { fullName, displayName: displayName || '', email, password }).pipe(
       catchError(error => {
         this.notification.open(error.error.message, 'ok', notificationConfig);
         return throwError(error);

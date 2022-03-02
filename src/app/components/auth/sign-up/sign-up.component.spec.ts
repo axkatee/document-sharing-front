@@ -71,13 +71,13 @@ describe('SignUpComponent', () => {
   });
 
   it('should return error because image is too big', () => {
-    component.getImageValue(fileWithBigSize);
+    component.getImage(fileWithBigSize);
     expect(imagePath.getValue()).toBe('');
     expect(isUserHasAvatar.getValue()).toBeFalsy();
   });
 
   it('should return error because file extension is incorrect', () => {
-    component.getImageValue(fileWithWrongExtension);
+    component.getImage(fileWithWrongExtension);
     expect(imagePath.getValue()).toBe('');
     expect(isUserHasAvatar.getValue()).toBeFalsy();
   });

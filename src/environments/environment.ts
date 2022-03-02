@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: ''
+  apiUrl: 'http://exceedteam.my:3001/'
 };

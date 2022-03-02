@@ -1,1 +1,38 @@
-<div class="sign-out" (click)="signOut()">Sign out</div>
+<div class="main-block">
+  <app-sidenav-menu></app-sidenav-menu>
+  <div class="dashboard-page">
+    <div class="top-block">
+      <div class="title">Dashboard</div>
+      <div class="create-folder underline-text"
+           (click)="openModal('createFolder')">
+        + Create new folder
+      </div>
+    </div>
+    <div class="folders-block">
+      <div class="folder"
+           *ngFor="let folder of (folders | async)"
+           (click)="openFolder(folder.id)">
+        <div class="folder-name">
+          <img class="folder-img"
+               src="assets/folder.png"
+               alt="">
+          <div class="name">
+            {{folder.name}}
+          </div>
+        </div>
+        <div class="action-btns">
+          <img class="image"
+               src="assets/edit.png"
+               alt=""
+               (click)="openModal('edit', folder)"
+               matTooltip="Edit name">
+          <img class="image"
+               src="assets/delete.png"
+               alt=""
+               (click)="openModal('delete', folder)"
+               matTooltip="Delete">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
