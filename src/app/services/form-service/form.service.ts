@@ -74,14 +74,6 @@ export class FormService {
       })
   }
 
-  private validatePasswords(): ValidatorFn | null {
-    return (control: AbstractControl): ValidationErrors | null => {
-      const password = control.get('password').value;
-      const repeatPassword = control.get('repeatPassword').value;
-      return password === repeatPassword ? null : { notSame: true };
-    };
-  }
-
   public editNameForm(): FormGroup {
     return new FormBuilder().group({
       name: new FormControl('', [
@@ -91,5 +83,13 @@ export class FormService {
         Validators.maxLength(32)
       ])
     });
+  }
+
+  private validatePasswords(): ValidatorFn | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const password = control.get('password').value;
+      const repeatPassword = control.get('repeatPassword').value;
+      return password === repeatPassword ? null : { notSame: true };
+    };
   }
 }

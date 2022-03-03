@@ -37,13 +37,17 @@ export class DashboardComponent {
         break;
       }
       case 'delete': {
-        this.openDeleteFileModal(folder, folder.id, { data: folder }, folders);
+        this.openDeleteFileModal(folder.id, { data: folder }, folders);
         break;
       }
       default: {
         this.notification.open('This modal does not exist');
       }
     }
+  }
+
+  public openFolder(id: string): void {
+    this.router.navigate([`dashboard/${id}`]).then();
   }
 
   private openCreateFolderModal(folders: IFolder[]): void {
@@ -56,7 +60,7 @@ export class DashboardComponent {
     });
   }
 
-  private openDeleteFileModal(folder: IFolder, folderId: string, data, folders: IFolder[]): void {
+  private openDeleteFileModal(folderId: string, data, folders: IFolder[]): void {
     const dialogRef = this.dialog.open(DeleteFileModalComponent, data);
     dialogRef.afterClosed().subscribe(data => {
       if (data) {
@@ -78,9 +82,5 @@ export class DashboardComponent {
         this.folders.next(folders);
       }
     });
-  }
-
-  public openFolder(id: string): void {
-    this.router.navigate([`dashboard/${id}`]).then();
   }
 }
