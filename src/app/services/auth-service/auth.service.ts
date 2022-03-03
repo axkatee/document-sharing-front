@@ -22,7 +22,7 @@ export class AuthService {
   signIn(email: string, password: string): Observable<any> {
     return this.http.get(environment.apiUrl + `auth/signin?email=${email}&password=${password}`).pipe(
       catchError(error => {
-        this.notification.open(error.error.message, 'ok', notificationConfig);
+        this.notification.open(error.error.message || 'Error with sign in', 'ok', notificationConfig);
         return throwError(error);
       }));
   }
@@ -30,7 +30,7 @@ export class AuthService {
   signUp(fullName: string, email: string, password: string, avatar?: string, displayName?: string): Observable<any> {
     return this.http.post(environment.apiUrl + 'auth/signup', { fullName, displayName: displayName || '', email, password }).pipe(
       catchError(error => {
-        this.notification.open(error.error.message, 'ok', notificationConfig);
+        this.notification.open(error.error.message || 'Error with sign up', 'ok', notificationConfig);
         return throwError(error);
       }));
   }

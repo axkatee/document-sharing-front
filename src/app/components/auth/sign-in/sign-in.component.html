@@ -1,33 +1,37 @@
-<div class="shadow-block"></div>
-<div class="sign-in-block">
-  <div class="title">Sign in</div>
-  <form class="form-block"
-        [formGroup]="loginForm">
-    <input type="text"
-           formControlName="email"
-           class="custom-input"
-           placeholder="email"
-           autocomplete="off">
-    <input type="password"
-           formControlName="password"
-           class="custom-input"
-           placeholder="password"
-           readonly
-           onfocus="this.removeAttribute('readonly');"
-           autocomplete="off">
-  </form>
-  <div class="action-btns">
-    <button class="custom-button"
-            (click)="signIn()"
-            [disabled]="loginForm.invalid">
-      Sign in
-    </button>
-    <div class="sign-up-navigation">
-      Haven't account?
-      <span class="underline-text"
-            (click)="navigateToSignUp()">
+<div class="page">
+  <div class="main-container">
+    <div class="shadow-block"></div>
+    <div class="sign-in-block">
+      <div class="title">Sign in</div>
+      <form class="form-block"
+            [formGroup]="loginForm">
+        <input type="text"
+               formControlName="email"
+               class="custom-input"
+               placeholder="email"
+               autocomplete="off">
+        <input type="password"
+               formControlName="password"
+               class="custom-input"
+               placeholder="password"
+               readonly
+               onfocus="this.removeAttribute('readonly');"
+               autocomplete="off">
+      </form>
+      <div class="action-btns">
+        <button class="custom-button"
+                (click)="signIn()"
+                [disabled]="loginForm.invalid">
+          Sign in
+        </button>
+        <div class="sign-up-navigation">
+          Haven't account?
+          <span class="underline-text"
+                (click)="navigateToSignUp()">
         Sign up
       </span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
