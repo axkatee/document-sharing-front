@@ -1,83 +1,90 @@
-<div class="shadow-block"></div>
-<div class="sign-up-block">
-  <div class="title">Sign up</div>
-  <form class="form-block"
-        [formGroup]="registrationForm">
-    <div class="name-block">
-      <input type="text"
-             formControlName="fullName"
-             class="custom-input small-input"
-             placeholder="full name*"
-             autocomplete="off">
-      <input type="text"
-             formControlName="displayName"
-             class="custom-input small-input"
-             placeholder="display name"
-             autocomplete="off">
-    </div>
-    <input type="text"
-           formControlName="email"
-           class="custom-input"
-           placeholder="email*"
-           autocomplete="off">
-    <input type="password"
-           formControlName="password"
-           class="custom-input"
-           placeholder="password*"
-           readonly
-           onfocus="this.removeAttribute('readonly');"
-           autocomplete="off">
-    <input type="password"
-           formControlName="repeatPassword"
-           class="custom-input"
-           placeholder="repeat password*"
-           [ngClass]="{'error': registrationForm.getError('notSame')
+<div class="page">
+  <div class="main-container">
+    <div class="shadow-block"></div>
+    <div class="sign-up-block">
+      <div class="title">Sign up</div>
+      <form class="form-block"
+            [formGroup]="registrationForm">
+        <div class="name-block">
+          <input type="text"
+                 formControlName="fullName"
+                 class="custom-input small-input"
+                 placeholder="full name*"
+                 autocomplete="off">
+          <input type="text"
+                 formControlName="displayName"
+                 class="custom-input small-input"
+                 placeholder="display name"
+                 autocomplete="off">
+        </div>
+        <input type="text"
+               formControlName="email"
+               class="custom-input"
+               placeholder="email*"
+               autocomplete="off">
+        <input type="password"
+               formControlName="password"
+               class="custom-input"
+               placeholder="password*"
+               readonly
+               onfocus="this.removeAttribute('readonly');"
+               autocomplete="off">
+        <input type="password"
+               formControlName="repeatPassword"
+               class="custom-input"
+               placeholder="repeat password*"
+               [ngClass]="{'error': registrationForm.getError('notSame')
            && registrationForm.controls['repeatPassword'].dirty }"
-           readonly
-           onfocus="this.removeAttribute('readonly');"
-           autocomplete="off">
-  </form>
-  <div class="avatar-block">
-    <label for="fileInput">
-      <div class="avatar-skeleton"
-           *ngIf="!(isUserHasAvatar | async)"></div>
-      <img class="avatar-skeleton"
-           *ngIf="(isUserHasAvatar | async)"
-           src="{{imagePath | async}}"
-           ondragstart="return false;"
-           (error)="clearImage()">
-    </label>
-    <div class="description-block">
-      <label for="fileInput">
-        <div class="custom-button">upload avatar</div>
-      </label>
-      <input type="file"
-             #fileInput
-             id="fileInput"
-             class="hidden-btn"
-             [accept]="acceptedExtensions"
-             (change)="getImage()"
-             autocomplete="off">
-      <div class="description">
-        Supported formats .jpg, .jpeg, .gif, .png
+               readonly
+               onfocus="this.removeAttribute('readonly');"
+               autocomplete="off">
+      </form>
+      <div class="avatar-block">
+        <label for="fileInput">
+          <div class="avatar-skeleton"
+               *ngIf="!(isUserHasAvatar | async)"></div>
+          <img class="avatar-skeleton"
+               *ngIf="(isUserHasAvatar | async)"
+               src="{{imagePath | async}}"
+               ondragstart="return false;"
+               (error)="clearImage()">
+        </label>
+        <div class="description-block">
+          <label for="fileInput">
+            <div class="custom-button">
+              upload avatar
+            </div>
+          </label>
+          <input type="file"
+                 #fileInput
+                 id="fileInput"
+                 class="hidden-btn"
+                 [accept]="acceptedExtensions"
+                 (change)="getImage()"
+                 autocomplete="off">
+          <div class="description">
+            Supported formats .jpg, .jpeg, .gif, .png
+          </div>
+          <div class="description">
+            Max image size - 700kB
+          </div>
+        </div>
       </div>
-      <div class="description">
-        Max image size - 700kB
-      </div>
-    </div>
-  </div>
-  <div class="action-btns">
-    <button class="custom-button"
-            (click)="signUp()"
-            [disabled]="registrationForm.invalid">
-      Sign up
-    </button>
-    <div class="sign-up-navigation">
-      Already have an account?
-      <span class="underline-text"
-            (click)="navigateToSignIn()">
+      <div class="action-btns">
+        <button class="custom-button"
+                (click)="signUp()"
+                [disabled]="registrationForm.invalid">
+          Sign up
+        </button>
+        <div class="sign-up-navigation">
+          Already have an account?
+          <span class="underline-text"
+                (click)="navigateToSignIn()">
         Sign in
       </span>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>

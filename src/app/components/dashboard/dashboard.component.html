@@ -14,6 +14,7 @@
         <div class="folder-name"
              (click)="openFolder(folder.id)">
           <img class="folder-img"
+               ondragstart="return false;"
                src="assets/folder.png"
                alt="">
           <div class="name">
@@ -24,11 +25,13 @@
           <img class="image"
                src="assets/edit.png"
                alt=""
+               ondragstart="return false;"
                (click)="openModal('edit', folder)"
                matTooltip="Edit name">
           <img class="image"
                src="assets/delete.png"
                alt=""
+               ondragstart="return false;"
                (click)="openModal('delete', folder)"
                matTooltip="Delete">
         </div>
