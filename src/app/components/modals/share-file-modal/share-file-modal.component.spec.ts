@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ShareFileModalComponent } from './share-file-modal.component';
+import { ShareFileModalComponent } from '@modals/share-file-modal/share-file-modal.component';
 
 describe('ShareFileModalComponent', () => {
   let component: ShareFileModalComponent;

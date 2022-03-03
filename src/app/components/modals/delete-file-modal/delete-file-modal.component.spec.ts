@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DeleteFileModalComponent } from './delete-file-modal.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DeleteFileModalComponent } from '@modals/delete-file-modal/delete-file-modal.component';
 
 describe('DeleteFileModalComponent', () => {
   let component: DeleteFileModalComponent;

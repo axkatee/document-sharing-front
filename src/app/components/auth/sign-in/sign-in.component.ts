@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
-import { FormService } from '../../../services/form-service/form.service';
-import { AuthService } from '../../../services/auth-service/auth.service';
+import { FormService } from '@services/form-service/form.service';
+import { AuthService } from '@services/auth-service/auth.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -13,18 +13,18 @@ export class SignInComponent {
   public loginForm: FormGroup;
 
   constructor(
-    private router: Router,
-    private formService: FormService,
-    private authService: AuthService
+    private readonly router: Router,
+    private readonly formService: FormService,
+    private readonly authService: AuthService
   ) {
     this.loginForm = this.formService.loginForm();
   }
 
-  navigateToSignUp(): void {
+  public navigateToSignUp(): void {
     this.router.navigate(['signup']).then();
   }
 
-  signIn(): void {
+  public signIn(): void {
     const email = this.loginForm.controls['email'].value.toString();
     const password = this.loginForm.controls['password'].value.toString();
 

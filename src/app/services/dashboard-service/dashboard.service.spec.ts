@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { DashboardService } from './dashboard.service';
+import { DashboardService } from '@services/dashboard-service/dashboard.service';
 
 describe('DashboardService', () => {
   let service: DashboardService;

@@ -4,9 +4,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { AuthService } from '../../../services/auth-service/auth.service';
-import { SignInComponent } from './sign-in.component';
-import { routes } from '../../../config';
+import { AuthService } from '@services/auth-service/auth.service';
+import { SignInComponent } from '@components/auth/sign-in/sign-in.component';
+import { routes } from '@config';
 
 describe('SignInComponent', () => {
   let component: SignInComponent;

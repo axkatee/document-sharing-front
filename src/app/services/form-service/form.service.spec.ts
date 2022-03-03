@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { FormService } from './form.service';
 import {
   AbstractControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule
 } from "@angular/forms";
+import { FormService } from '@services/form-service/form.service';
 
 describe('FormService', () => {
   let service: FormService;

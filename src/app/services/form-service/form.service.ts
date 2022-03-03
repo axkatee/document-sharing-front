@@ -13,10 +13,10 @@ import {
   providedIn: 'root'
 })
 export class FormService {
-  private emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  private noSpacesRegex = /^\S*$/;
-  private spaceBetweenWordsRegex = /^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$/;
-  private spaceBetweenWordsAndAllowNumbersRegex = /^([a-zA-Z0-9]+ )+[a-zA-Z0-9]+$|^[a-zA-Z0-9]+$/;
+  private readonly emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  private readonly noSpacesRegex = /^\S*$/;
+  private readonly spaceBetweenWordsRegex = /^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$/;
+  private readonly spaceBetweenWordsAndAllowNumbersRegex = /^([a-zA-Z0-9]+ )+[a-zA-Z0-9]+$|^[a-zA-Z0-9]+$/;
 
   constructor() { }
 
@@ -74,7 +74,7 @@ export class FormService {
       })
   }
 
-  validatePasswords(): ValidatorFn | null {
+  private validatePasswords(): ValidatorFn | null {
     return (control: AbstractControl): ValidationErrors | null => {
       const password = control.get('password').value;
       const repeatPassword = control.get('repeatPassword').value;

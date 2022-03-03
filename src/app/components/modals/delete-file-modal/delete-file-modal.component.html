@@ -1,7 +1,11 @@
 <div class="dialog">
   <div mat-dialog-title
        class="title">
-    Delete {{name}}?
+    Delete&nbsp;
+    <div class="folder-name">
+      {{this.data?.name}}
+    </div>
+    ?
   </div>
   <div class="action-btns">
     <div class="underline-text"

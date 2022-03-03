@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { EditFileNameModalComponent } from './edit-file-name-modal.component';
-import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { EditFileNameModalComponent } from '@modals/edit-file-name-modal/edit-file-name-modal.component';
 
 describe('EditFileNameModalComponent', () => {
   let component: EditFileNameModalComponent;

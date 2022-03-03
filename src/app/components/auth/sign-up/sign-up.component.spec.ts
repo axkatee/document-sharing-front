@@ -5,10 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { AuthService } from '../../../services/auth-service/auth.service';
-import { SignUpComponent } from './sign-up.component';
-import { IFile } from '../../../interfaces/file-interface';
-import {routes} from "../../../config";
+import { AuthService } from '@services/auth-service/auth.service';
+import { SignUpComponent } from '@components/auth/sign-up/sign-up.component';
+import { IFile } from '@interfaces/file-interface';
+import { routes } from "@config";
 
 describe('SignUpComponent', () => {
   let component: SignUpComponent;

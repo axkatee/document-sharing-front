@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 export class SidenavMenuComponent {
 
   constructor(
-    private router: Router
+    private readonly router: Router
   ) { }
 
-  navigateTo(path: string, signOut: boolean): void {
+  public navigateTo(path: string, signOut: boolean): void {
     if (signOut) {
       localStorage.removeItem('auth_data');
     }

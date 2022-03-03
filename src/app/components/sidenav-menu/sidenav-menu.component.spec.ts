@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SidenavMenuComponent } from './sidenav-menu.component';
-import { routes } from '../../config';
+import { SidenavMenuComponent } from '@components/sidenav-menu/sidenav-menu.component';
+import { routes } from '@config';
 
 describe('SidenavMenuComponent', () => {
   let component: SidenavMenuComponent;
