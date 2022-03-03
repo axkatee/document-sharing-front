@@ -6,7 +6,7 @@ import { AuthService } from '@services/auth-service/auth.service';
   providedIn: 'root'
 })
 
-export class AuthGuard implements CanActivate {
+export class DashboardGuard implements CanActivate {
   private readonly token: string;
 
   constructor(
@@ -18,8 +18,8 @@ export class AuthGuard implements CanActivate {
 
 
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : boolean {
-    if (!this.token) {
-      this.router.navigate(['/login']).then();
+    if (this.token) {
+      this.router.navigate(['/dashboard']).then();
       return false;
     }
     return true;

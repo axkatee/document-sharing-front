@@ -21,7 +21,15 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@services/*": ["src/app/services/*"],
+      "@environments/*": ["src/environments/*"],
+      "@config": ["src/app/config.ts"],
+      "@interfaces/*": ["src/app/interfaces/*"],
+      "@modals/*": ["src/app/components/modals/*"],
+      "@components/*": ["src/app/components/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

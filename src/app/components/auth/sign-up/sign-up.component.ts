@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
-import { FormService } from '../../../services/form-service/form.service';
-import { AuthService } from '../../../services/auth-service/auth.service';
-import { notificationConfig } from '../../../config';
+import { FormService } from '@services/form-service/form.service';
+import { AuthService } from '@services/auth-service/auth.service';
+import { notificationConfig } from '@config';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,18 +18,18 @@ export class SignUpComponent {
   public registrationForm: FormGroup;
   public imagePath = new BehaviorSubject<string | ArrayBuffer>('');
   public isUserHasAvatar = new BehaviorSubject<boolean | ArrayBuffer>(false);
-  public acceptedExtensions = '.png, .jpg, .jpeg, .gif';
+  public readonly acceptedExtensions = '.png, .jpg, .jpeg, .gif';
 
   constructor(
-    private router: Router,
-    private formService: FormService,
-    private notification: MatSnackBar,
-    private authService: AuthService
+    private readonly router: Router,
+    private readonly formService: FormService,
+    private readonly notification: MatSnackBar,
+    private readonly authService: AuthService
   ) {
     this.registrationForm = this.formService.registrationForm();
   }
 
-  signUp(): void {
+  public signUp(): void {
     const fullName = this.registrationForm.controls['fullName'].value.toString();
     const displayName = this.registrationForm.controls['displayName'].value.toString();
     const email = this.registrationForm.controls['email'].value.toString();
@@ -40,11 +40,11 @@ export class SignUpComponent {
     });
   }
 
-  navigateToSignIn(): void {
+  public navigateToSignIn(): void {
     this.router.navigate(['login']).then();
   }
 
-  getImage(file = this.fileInput.nativeElement.files[0]): void {
+  public getImage(file = this.fileInput.nativeElement.files[0]): void {
     const extension = `.${file?.type.split('/').pop()}`;
     let allowedExtensions = this.acceptedExtensions.split(', ');
     if (!allowedExtensions.includes(extension)) {
@@ -68,7 +68,7 @@ export class SignUpComponent {
     }
   }
 
-  clearImage(): void {
+  public clearImage(): void {
     this.imagePath.next('');
     this.isUserHasAvatar.next(false);
   }

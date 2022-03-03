@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { OpenFileModalComponent } from './open-file-modal.component';
+import { OpenFileModalComponent } from '@modals/open-file-modal/open-file-modal.component';
 
 describe('OpenFileModalComponent', () => {
   let component: OpenFileModalComponent;

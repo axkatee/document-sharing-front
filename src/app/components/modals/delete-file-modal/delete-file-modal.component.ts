@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { IFolderModal } from '../../../interfaces/modal-interface';
-import { IFolder } from '../../../interfaces/folder-interface';
+import { IFolderModal } from '@interfaces/modal-interface';
+import { IFolder } from '@interfaces/folder-interface';
 
 @Component({
   selector: 'app-delete-file-modal',
@@ -9,16 +9,13 @@ import { IFolder } from '../../../interfaces/folder-interface';
   styleUrls: ['./delete-file-modal.component.less']
 })
 export class DeleteFileModalComponent {
-  public name: string;
 
   constructor(
-    private dialogRef: MatDialogRef<IFolderModal>,
-    @Inject(MAT_DIALOG_DATA) public data: IFolder
-  ) {
-    this.name = this.data.name.length > 10 ? `${this.data.name.substr(0, 10)}..` : this.data.name
-  }
+    private readonly dialogRef: MatDialogRef<IFolderModal>,
+    @Inject(MAT_DIALOG_DATA) public readonly data: IFolder
+  ) { }
 
-  closeDialog(id?: string) {
+  public closeDialog(id?: string) {
     this.dialogRef.close(id);
   }
 }

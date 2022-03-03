@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormService } from '../../../services/form-service/form.service';
-import { IFolderModal } from '../../../interfaces/modal-interface';
+import { FormService } from '@services/form-service/form.service';
+import { IFolderModal } from '@interfaces/modal-interface';
 
 @Component({
   selector: 'app-create-folder-modal',
@@ -13,17 +13,17 @@ export class CreateFolderModalComponent {
   public editNameForm: FormGroup;
 
   constructor(
-    private dialogRef: MatDialogRef<IFolderModal>,
-    private formService: FormService
+    private readonly dialogRef: MatDialogRef<IFolderModal>,
+    private readonly formService: FormService
   ) {
     this.editNameForm = this.formService.editNameForm();
   }
 
-  createFolder(): void {
+  public createFolder(): void {
     this.closeDialog(this.editNameForm.get('name').value);
   }
 
-  closeDialog(name?: string): void {
+  public closeDialog(name?: string): void {
     this.dialogRef.close(name);
   }
 }

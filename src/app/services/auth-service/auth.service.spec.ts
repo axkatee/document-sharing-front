@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { EMPTY } from 'rxjs';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { AuthService } from './auth.service';
+import { EMPTY } from 'rxjs';
+import { AuthService } from '@services/auth-service/auth.service';
 
 describe('AuthService', () => {
   let service: AuthService;

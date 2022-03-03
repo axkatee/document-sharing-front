@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DeleteFileModalComponent } from './delete-file-modal.component';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DeleteFileModalComponent } from '@modals/delete-file-modal/delete-file-modal.component';
 
 describe('DeleteFileModalComponent', () => {
   let component: DeleteFileModalComponent;
@@ -7,7 +8,8 @@ describe('DeleteFileModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeleteFileModalComponent ]
+      declarations: [ DeleteFileModalComponent ],
+      providers: [ { provide: MatDialogRef, useValue: {} }, { provide: MAT_DIALOG_DATA, useValue: {} } ]
     })
     .compileComponents();
   });
@@ -19,6 +21,6 @@ describe('DeleteFileModalComponent', () => {
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

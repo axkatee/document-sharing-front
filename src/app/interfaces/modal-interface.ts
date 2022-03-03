@@ -1,4 +1,4 @@
-import { IFolder } from "./folder-interface";
+import { IFolder } from '@interfaces/folder-interface';
 
 export interface IFolderModal {
   folder: IFolder

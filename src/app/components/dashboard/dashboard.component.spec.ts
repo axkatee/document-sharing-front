@@ -2,8 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { DashboardComponent } from './dashboard.component';
-import { routes } from '../../config';
+import { MatDialog } from '@angular/material/dialog';
+import { DashboardComponent } from '@components/dashboard/dashboard.component';
+import { routes } from '@config';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -31,7 +32,7 @@ describe('DashboardComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ DashboardComponent ],
       imports: [ RouterTestingModule.withRoutes(routes), HttpClientTestingModule, MatSnackBarModule ],
-      providers: [  ]
+      providers: [ { provide: MatDialog, useValue: {} } ]
     })
     .compileComponents();
   });
