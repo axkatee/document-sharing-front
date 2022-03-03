@@ -3,8 +3,9 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from "./auth.guard";
 import { SignInComponent } from './components/auth/sign-in/sign-in.component';
 import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AccountComponent } from './components/account/account.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { FolderContentComponent } from "./components/folder-content/folder-content.component";
 
 export const notificationConfig: MatSnackBarConfig = {
   duration: 3000,
@@ -24,6 +25,11 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'dashboard/:id',
+    component: FolderContentComponent,
     canActivate: [AuthGuard]
   },
   {

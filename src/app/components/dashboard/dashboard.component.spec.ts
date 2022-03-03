@@ -48,11 +48,4 @@ describe('DashboardComponent', () => {
     token = localStorage.getItem('auth_data');
     expect(token).toBe('12345');
   });
-
-  it('should sign out', () => {
-    component.signOut();
-    token = localStorage.getItem('auth_data');
-    console.log(store)
-    expect(token).toBe(null);
-  });
 });
