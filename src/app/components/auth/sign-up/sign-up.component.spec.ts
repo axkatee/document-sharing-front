@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { SignUpComponent } from './sign-up.component';
 import { IFile } from '../../../interfaces/file-interface';
+import {routes} from "../../../config";
 
 describe('SignUpComponent', () => {
   let component: SignUpComponent;
@@ -28,7 +29,7 @@ describe('SignUpComponent', () => {
 
     await TestBed.configureTestingModule({
       declarations: [ SignUpComponent ],
-      imports: [ RouterTestingModule, HttpClientTestingModule, MatSnackBarModule, ReactiveFormsModule, FormsModule, BrowserAnimationsModule ],
+      imports: [ RouterTestingModule.withRoutes(routes), HttpClientTestingModule, MatSnackBarModule, ReactiveFormsModule, FormsModule, BrowserAnimationsModule ],
       providers: [ { provide: AuthService, useValue: authServiceMock }]
     })
     .compileComponents();

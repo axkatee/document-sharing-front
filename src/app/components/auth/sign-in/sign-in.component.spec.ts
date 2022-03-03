@@ -16,7 +16,7 @@ describe('SignInComponent', () => {
   beforeEach(async () => {
     authServiceMock = {
       signIn(): Observable<any> {
-        return of(1);
+        return of({ authData: { accessToken: '12345' } });
       }
     }
 

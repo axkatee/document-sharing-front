@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditFileNameModalComponent } from './edit-file-name-modal.component';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
 describe('EditFileNameModalComponent', () => {
   let component: EditFileNameModalComponent;
@@ -9,7 +9,7 @@ describe('EditFileNameModalComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ EditFileNameModalComponent ],
-      providers: [ { provide: MatDialogRef, useValue: {} } ]
+      providers: [ { provide: MatDialogRef, useValue: {} }, { provide: MAT_DIALOG_DATA, useValue: {} } ]
     })
     .compileComponents();
   });

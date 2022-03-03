@@ -15,7 +15,7 @@ export class DeleteFileModalComponent {
     private dialogRef: MatDialogRef<IFolderModal>,
     @Inject(MAT_DIALOG_DATA) public data: IFolder
   ) {
-    this.name = this.data.name.length > 10 ? `${this.data.name.substr(0, 10)}..` : this.data.name
+    this.name = this.data?.name?.length > 10 ? `${this.data?.name?.substr(0, 10)}..` : this.data?.name
   }
 
   closeDialog(id?: string) {

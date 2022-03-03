@@ -13,6 +13,10 @@ import {
   providedIn: 'root'
 })
 export class FormService {
+  private emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  private noSpacesRegex = /^\S*$/;
+  private spaceBetweenWordsRegex = /^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$/;
+  private spaceBetweenWordsAndAllowNumbersRegex = /^([a-zA-Z0-9]+ )+[a-zA-Z0-9]+$|^[a-zA-Z0-9]+$/;
 
   constructor() { }
 
@@ -20,13 +24,14 @@ export class FormService {
     return new FormBuilder().group({
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
+        Validators.pattern(this.emailRegex),
         Validators.minLength(4),
         Validators.maxLength(32)
       ]),
       password: new FormControl('', [
         Validators.minLength(4),
         Validators.required,
+        Validators.pattern(this.noSpacesRegex),
         Validators.maxLength(32)
       ])
     });
@@ -36,26 +41,30 @@ export class FormService {
     return new FormBuilder().group({
       fullName: new FormControl('', [
         Validators.required,
+        Validators.pattern(this.spaceBetweenWordsRegex),
         Validators.minLength(4),
         Validators.maxLength(32)
       ]),
       displayName: new FormControl('', [
+        Validators.pattern(this.spaceBetweenWordsAndAllowNumbersRegex),
         Validators.minLength(4),
         Validators.maxLength(32)
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
+        Validators.pattern(this.emailRegex),
         Validators.minLength(4),
         Validators.maxLength(32)
       ]),
       password: new FormControl('', [
         Validators.minLength(4),
+        Validators.pattern(this.noSpacesRegex),
         Validators.required,
         Validators.maxLength(32)
       ]),
       repeatPassword: new FormControl('', [
         Validators.minLength(4),
+        Validators.pattern(this.noSpacesRegex),
         Validators.required,
         Validators.maxLength(32),
 
@@ -77,6 +86,7 @@ export class FormService {
     return new FormBuilder().group({
       name: new FormControl('', [
         Validators.required,
+        Validators.pattern(this.noSpacesRegex),
         Validators.minLength(4),
         Validators.maxLength(32)
       ])
