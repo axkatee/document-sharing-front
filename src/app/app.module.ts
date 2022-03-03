@@ -16,6 +16,7 @@ import { AccountComponent } from './components/account/account.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { SidenavMenuComponent } from './components/sidenav-menu/sidenav-menu.component';
 import { OpenFileModalComponent } from './components/modals/open-file-modal/open-file-modal.component';
+import { FolderContentComponent } from './components/folder-content/folder-content.component';
 import { ShareFileModalComponent } from './components/modals/share-file-modal/share-file-modal.component';
 import { DeleteFileModalComponent } from './components/modals/delete-file-modal/delete-file-modal.component';
 import { EditFileNameModalComponent } from './components/modals/edit-file-name-modal/edit-file-name-modal.component';
@@ -25,28 +26,29 @@ import { CreateFolderModalComponent } from './components/modals/create-folder-mo
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent,
     SignUpComponent,
+    SignInComponent,
+    AccountComponent,
     DashboardComponent,
+    SidenavMenuComponent,
+    FolderContentComponent,
+    OpenFileModalComponent,
     ShareFileModalComponent,
     DeleteFileModalComponent,
     EditFileNameModalComponent,
-    OpenFileModalComponent,
-    SidenavMenuComponent,
-    AccountComponent,
     CreateFolderModalComponent
   ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NoopAnimationsModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule,
-        FormsModule,
-        OverlayModule,
-        HttpClientModule,
-        MatDialogModule,
-        MatTooltipModule
+      FormsModule,
+      OverlayModule,
+      BrowserModule,
+      MatDialogModule,
+      HttpClientModule,
+      AppRoutingModule,
+      MatTooltipModule,
+      ReactiveFormsModule,
+      NoopAnimationsModule,
+      BrowserAnimationsModule
     ],
   providers: [FormService, MatSnackBar],
   bootstrap: [AppComponent]

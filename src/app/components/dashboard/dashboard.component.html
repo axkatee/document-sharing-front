@@ -10,9 +10,9 @@
     </div>
     <div class="folders-block">
       <div class="folder"
-           *ngFor="let folder of (folders | async)"
-           (click)="openFolder(folder.id)">
-        <div class="folder-name">
+           *ngFor="let folder of (folders | async)">
+        <div class="folder-name"
+             (click)="openFolder(folder.id)">
           <img class="folder-img"
                src="assets/folder.png"
                alt="">
