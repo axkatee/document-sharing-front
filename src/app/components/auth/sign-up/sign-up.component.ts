@@ -15,9 +15,9 @@ import { notificationConfig } from '@config';
 export class SignUpComponent {
   @ViewChild('fileInput') fileInput: ElementRef;
 
-  public registrationForm: FormGroup;
   public imagePath = new BehaviorSubject<string | ArrayBuffer>('');
   public isUserHasAvatar = new BehaviorSubject<boolean | ArrayBuffer>(false);
+  public readonly registrationForm: FormGroup;
   public readonly acceptedExtensions = '.png, .jpg, .jpeg, .gif';
 
   constructor(

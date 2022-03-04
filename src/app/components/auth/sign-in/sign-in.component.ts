@@ -10,7 +10,7 @@ import { AuthService } from '@services/auth-service/auth.service';
   styleUrls: ['./sign-in.component.less']
 })
 export class SignInComponent {
-  public loginForm: FormGroup;
+  public readonly loginForm: FormGroup;
 
   constructor(
     private readonly router: Router,
@@ -29,8 +29,8 @@ export class SignInComponent {
     const password = this.loginForm.controls['password'].value.toString();
 
     this.authService.signIn(email, password).subscribe(res => {
-      localStorage.setItem('auth_data', res.authData.accessToken);
-     this.router.navigate(['dashboard']).then();
+      localStorage.setItem('auth_data', JSON.stringify(res.authData));
+    this.router.navigate(['dashboard']).then();
     });
   }
 }

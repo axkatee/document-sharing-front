@@ -62,8 +62,8 @@ export class DashboardComponent {
 
   private openDeleteFileModal(folderId: string, data, folders: IFolder[]): void {
     const dialogRef = this.dialog.open(DeleteFileModalComponent, data);
-    dialogRef.afterClosed().subscribe(data => {
-      if (data) {
+    dialogRef.afterClosed().subscribe(id => {
+      if (id) {
         folders = folders.filter(folder => folder.id !== folderId);
         this.folders.next(folders);
       }

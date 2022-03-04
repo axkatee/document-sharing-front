@@ -14,31 +14,52 @@ export const notificationConfig: MatSnackBarConfig = {
   verticalPosition: 'top'
 };
 
+export enum ErrorCodes {
+  INTERNAL_ERROR = 'Error. Please, reload page or try again later',
+  USER_EXIST = 'User with this email already exist',
+  VALIDATOR_ERROR = 'Incorrect input values',
+  INVALID_USER = 'Invalid email or password',
+  INVALID_TOKEN = 'Session expired'
+}
+
 export const routes: Routes = [
   {
     path: 'login',
     component: SignInComponent,
-    canActivate: [DashboardGuard]
+    canActivate: [DashboardGuard],
+    children: [{ path: '', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) }]
   },
   {
     path: 'signup',
     component: SignUpComponent,
-    canActivate: [DashboardGuard]
+    canActivate: [DashboardGuard],
+    children: [
+      { path: '', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) }
+    ]
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) }
+    ]
   },
   {
     path: 'dashboard/:id',
     component: FolderContentComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) }
+    ]
   },
   {
     path: 'account',
     component: AccountComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    children: [
+      { path: '', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule) }
+    ]
   },
   {
     path: '**',

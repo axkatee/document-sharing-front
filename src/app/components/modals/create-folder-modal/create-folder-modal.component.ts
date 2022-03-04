@@ -10,7 +10,7 @@ import { IFolderModal } from '@interfaces/modal-interface';
   styleUrls: ['./create-folder-modal.component.less']
 })
 export class CreateFolderModalComponent {
-  public editNameForm: FormGroup;
+  public readonly editNameForm: FormGroup;
 
   constructor(
     private readonly dialogRef: MatDialogRef<IFolderModal>,
