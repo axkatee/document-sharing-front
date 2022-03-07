@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
-import { TokenInterceptor } from "@token-interceptor";
-import { SharedModule } from "@modules/shared/shared.module";
-import { AuthRoutingModule } from "@modules/auth/auth-routing.module";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SharedModule } from '@modules/shared/shared.module';
+import { AccountRoutingModule } from '@modules/account/account-routing.module';
+import { TokenInterceptor } from '@token-interceptor';
 import { AccountComponent } from '@components/account/account.component';
 
 @NgModule({
@@ -13,7 +13,7 @@ import { AccountComponent } from '@components/account/account.component';
   imports: [
     CommonModule,
     SharedModule,
-    AuthRoutingModule
+    AccountRoutingModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

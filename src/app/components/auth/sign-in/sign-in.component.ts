@@ -30,7 +30,7 @@ export class SignInComponent {
 
     this.authService.signIn(email, password).subscribe(res => {
       localStorage.setItem('auth_data', JSON.stringify(res.authData));
-    this.router.navigate(['dashboard']).then();
+      this.router.navigate(['dashboard']).then();
     });
   }
 }
