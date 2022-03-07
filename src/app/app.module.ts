@@ -10,11 +10,13 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { DownloadDirective } from './directives/download.directive';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DownloadDirective
   ],
   imports: [
     FormsModule,

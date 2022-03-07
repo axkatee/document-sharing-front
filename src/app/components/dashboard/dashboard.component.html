@@ -4,13 +4,13 @@
     <div class="top-block">
       <div class="title">Dashboard</div>
       <div class="create-folder underline-text"
-           (click)="openModal('createFolder')">
+           (click)="openCreateFolderModal()">
         + Create new folder
       </div>
     </div>
     <div class="folders-block">
       <div class="folder"
-           *ngFor="let folder of (folders | async)">
+           *ngFor="let folder of (folders$ | async)  ">
         <div class="folder-name"
              (click)="openFolder(folder.id)">
           <img class="folder-img"
@@ -22,17 +22,20 @@
           </div>
         </div>
         <div class="action-btns">
+          <img class="image download-img"
+               src="assets/download.png"
+               alt="">
           <img class="image"
                src="assets/edit.png"
                alt=""
                ondragstart="return false;"
-               (click)="openModal('edit', folder)"
+               (click)="openEditFileNameModal(folder)"
                matTooltip="Edit name">
           <img class="image"
                src="assets/delete.png"
                alt=""
                ondragstart="return false;"
-               (click)="openModal('delete', folder)"
+               (click)="openDeleteFileModal(folder)"
                matTooltip="Delete">
         </div>
       </div>
