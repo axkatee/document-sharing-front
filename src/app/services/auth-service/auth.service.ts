@@ -21,6 +21,27 @@ export class AuthService {
     return localStorage.getItem('auth_data') || '';
   }
 
+  isLoggedIn(): Promise<boolean> {
+    const token = this.getTokenFromLocalStorage();
+    return new Promise(resolve => {
+      if (!token) {
+        return resolve(false);
+      }
+      try {
+        const parsedToken = JSON.parse(token);
+        const { accessToken } = parsedToken;
+
+        if (!accessToken) {
+          return resolve(false);
+        } else {
+          return resolve(true);
+        }
+      } catch (e) {
+        return resolve(false);
+      }
+    });
+  }
+
   public signIn(email: string, password: string): Observable<any> {
     return this.http.get(environment.apiUrl + `auth/signin?email=${email}&password=${password}`).pipe(
       catchError(error => {
