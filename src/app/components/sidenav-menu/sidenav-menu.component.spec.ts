@@ -41,18 +41,19 @@ describe('SidenavMenuComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    localStorage.setItem('auth_data', '12345');
+    localStorage.setItem('auth_data', JSON.stringify({ accessToken: '12345', refreshToken: '54321' }));
   });
 
   it('should remove token', () => {
     component.navigateTo('login', true);
     token = localStorage.getItem('auth_data');
-    expect(token).toBeNull();
+    expect(JSON.parse(token)).toBeNull();
   });
 
   it('shouldn\'t remove token', () => {
+    localStorage.setItem('auth_data', JSON.stringify({ accessToken: '12345', refreshToken: '54321' }));
     component.navigateTo('account', false);
     token = localStorage.getItem('auth_data');
-    expect(token).not.toBeNull();
+    expect(JSON.parse(token)).not.toBeNull();
   });
 });

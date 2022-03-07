@@ -24,6 +24,8 @@
     ],
     "paths": {
       "@services/*": ["src/app/services/*"],
+      "@modules/*": ["src/app/modules/*"],
+      "@token-interceptor": ["src/app/interceptors/token.interceptor.ts"],
       "@environments/*": ["src/environments/*"],
       "@config": ["src/app/config.ts"],
       "@interfaces/*": ["src/app/interfaces/*"],

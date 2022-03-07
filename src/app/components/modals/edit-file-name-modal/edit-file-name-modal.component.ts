@@ -11,7 +11,7 @@ import { IFolder } from '@interfaces/folder-interface';
   styleUrls: ['./edit-file-name-modal.component.less']
 })
 export class EditFileNameModalComponent {
-  public editNameForm: FormGroup;
+  public readonly editNameForm: FormGroup;
 
   constructor(
     private readonly dialogRef: MatDialogRef<IFolderModal>,

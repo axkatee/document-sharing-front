@@ -3,13 +3,15 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { EMPTY } from 'rxjs';
 import { AuthService } from '@services/auth-service/auth.service';
+import {RouterTestingModule} from "@angular/router/testing";
+import {routes} from "@config";
 
 describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule, MatSnackBarModule ]
+      imports: [ RouterTestingModule.withRoutes(routes), HttpClientTestingModule, MatSnackBarModule ]
     });
     service = TestBed.inject(AuthService);
   });
