@@ -30,7 +30,7 @@ export class AuthService {
   }
 
   public signUp(fullName: string, email: string, password: string, avatar?: string, displayName?: string): Observable<any> {
-    return this.http.post(environment.apiUrl + 'auth/signup', { fullName, displayName: displayName || '', email, password }).pipe(
+    return this.http.post(environment.apiUrl + 'auth/signup', { fullName, displayName: displayName || '', email, password, avatarImage: avatar || '' }).pipe(
       catchError(error => {
         this.notification.open(ErrorCodes[error.error.code] || 'Error with sign up', 'ok', notificationConfig);
         return throwError(error);

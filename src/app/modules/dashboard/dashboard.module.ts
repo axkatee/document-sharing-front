@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 import { SharedModule } from "@modules/shared/shared.module";
+import { DashboardRoutingModule } from "@modules/dashboard/dashboard-routing.module";
 import { TokenInterceptor } from "@token-interceptor";
 import { DashboardComponent } from '@components/dashboard/dashboard.component';
 import { FolderContentComponent } from '@components/folder-content/folder-content.component';
@@ -26,7 +27,8 @@ import { CreateFolderModalComponent } from '@modals/create-folder-modal/create-f
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    DashboardRoutingModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

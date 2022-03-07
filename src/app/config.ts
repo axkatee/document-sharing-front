@@ -2,11 +2,6 @@ import { MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { DashboardGuard } from './dashboard.guard';
-import { SignInComponent } from '@components/auth/sign-in/sign-in.component';
-import { SignUpComponent } from '@components/auth/sign-up/sign-up.component';
-import { AccountComponent } from '@components/account/account.component';
-import { DashboardComponent } from '@components/dashboard/dashboard.component';
-import { FolderContentComponent } from '@components/folder-content/folder-content.component';
 
 export const notificationConfig: MatSnackBarConfig = {
   duration: 3000,
@@ -24,42 +19,19 @@ export enum ErrorCodes {
 
 export const routes: Routes = [
   {
-    path: 'login',
-    component: SignInComponent,
+    path: '',
     canActivate: [DashboardGuard],
-    children: [{ path: '', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) }]
-  },
-  {
-    path: 'signup',
-    component: SignUpComponent,
-    canActivate: [DashboardGuard],
-    children: [
-      { path: '', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) }
-    ]
+    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: 'dashboard',
-    component: DashboardComponent,
     canActivate: [AuthGuard],
-    children: [
-      { path: '', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) }
-    ]
-  },
-  {
-    path: 'dashboard/:id',
-    component: FolderContentComponent,
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) }
-    ]
+    loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
     path: 'account',
-    component: AccountComponent,
     canActivate: [AuthGuard],
-    children: [
-      { path: '', loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule) }
-    ]
+    loadChildren: () => import('./modules/account/account.module').then(m => m.AccountModule)
   },
   {
     path: '**',

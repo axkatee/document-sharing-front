@@ -17,9 +17,9 @@ export class DashboardGuard implements CanActivate {
   }
 
 
-  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) : boolean {
+  public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.token) {
-      this.router.navigate(['/dashboard']).then();
+      this.router.navigate(['dashboard']).then();
       return false;
     }
     return true;
