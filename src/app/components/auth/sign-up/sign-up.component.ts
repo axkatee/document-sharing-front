@@ -44,7 +44,7 @@ export class SignUpComponent {
     this.router.navigate(['login']).then();
   }
 
-  public getImage(file = this.fileInput.nativeElement.files[0]): void {
+  public getImageFromUserPC(file = this.fileInput.nativeElement.files[0]): void {
     const extension = `.${file?.type.split('/').pop()}`;
     let allowedExtensions = this.acceptedExtensions.split(', ');
     if (!allowedExtensions.includes(extension)) {

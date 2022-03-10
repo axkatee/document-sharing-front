@@ -1,6 +1,6 @@
 <div class="folders-block">
   <div class="top-block">
-    <div class="title">{{title$ | async}}</div>
+    <div class="title roboto-font">{{title$ | async}}</div>
     <div class="create-folder underline-text"
          (click)="openCreateFolderModal()">
       + Create new folder
@@ -13,8 +13,7 @@
            (click)="openFolder(folder.id)">
         <img class="folder-img"
              ondragstart="return false;"
-             src="assets/folder.png"
-             alt="">
+             src="assets/folder.png">
         <div class="name">
           {{folder.name}}
         </div>
@@ -22,13 +21,11 @@
       <div class="action-btns">
         <img class="image"
              src="assets/edit.png"
-             alt=""
              ondragstart="return false;"
              (click)="openEditFileNameModal(folder)"
              matTooltip="Edit name">
         <img class="image"
              src="assets/delete.png"
-             alt=""
              ondragstart="return false;"
              (click)="openDeleteFileModal(folder)"
              matTooltip="Delete">

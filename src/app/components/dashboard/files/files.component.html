@@ -14,7 +14,7 @@
   </label>
   <input type="file"
          #fileInput
-         (change)="getFile()"
+         (change)="getFileFromUserPC()"
          id="fileInput"
          class="hidden-btn"
          autocomplete="off"
@@ -24,12 +24,11 @@
        *ngFor="let file of (files$ | async)"
        [matTooltip]="file.name">
     <div *ngIf="acceptedOthersExtensions.includes(file.type)"
-         class="type">
+         class="type roboto-font">
       {{file.type}}
     </div>
     <img *ngIf="acceptedImageExtensions.includes(file.type)"
          [src]="file.content"
-         alt=""
          class="image-file"
          loading="lazy">
     <video *ngIf="acceptedVideoExtensions.includes(file.type)"
@@ -38,7 +37,7 @@
               type="video/mp4">
     </video>
     <div *ngIf="acceptedTextExtensions.includes(file.type)"
-         class="text-file">
+         class="text-file roboto-font">
       {{file.name}}<br>
       <div class="underline-text">
         click to edit

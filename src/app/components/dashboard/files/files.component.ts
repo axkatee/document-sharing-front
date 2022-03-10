@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { DomSanitizer } from "@angular/platform-browser";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { BehaviorSubject } from 'rxjs';
 import {
@@ -9,7 +10,6 @@ import {
   acceptedVideoExtensions,
   notificationConfig
 } from '@config';
-import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-files',
@@ -31,7 +31,7 @@ export class FilesComponent {
     private readonly sanitizer: DomSanitizer
   ) { }
 
-  public getFile(file = this.fileInput.nativeElement.files[0]): void {
+  public getFileFromUserPC(file = this.fileInput.nativeElement.files[0]): void {
     if (!file) return;
     const extension = `.${file.type.split('/').pop().split('.')[0]}`;
     const reader = new FileReader();

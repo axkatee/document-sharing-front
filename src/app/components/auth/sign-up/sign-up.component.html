@@ -2,7 +2,7 @@
   <div class="main-container">
     <div class="shadow-block"></div>
     <div class="sign-up-block">
-      <div class="title">Sign up</div>
+      <div class="title roboto-font">Sign up</div>
       <form class="form-block"
             [formGroup]="registrationForm">
         <div class="name-block">
@@ -47,7 +47,6 @@
                *ngIf="(isUserHasAvatar | async)"
                src="{{imagePath | async}}"
                ondragstart="return false;"
-               alt=""
                (error)="clearImage()">
         </label>
         <div class="description-block">
@@ -61,7 +60,7 @@
                  id="fileInput"
                  class="hidden-btn"
                  [accept]="acceptedExtensions"
-                 (change)="getImage()"
+                 (change)="getImageFromUserPC()"
                  autocomplete="off">
           <div class="description">
             Supported formats .jpg, .jpeg, .gif, .png
