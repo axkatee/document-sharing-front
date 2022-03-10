@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://exceedteam.my:3001/'
+  apiUrl: 'http://exceedteam.my/doc-sharing-api/'
 };

@@ -47,6 +47,7 @@
                *ngIf="(isUserHasAvatar | async)"
                src="{{imagePath | async}}"
                ondragstart="return false;"
+               alt=""
                (error)="clearImage()">
         </label>
         <div class="description-block">

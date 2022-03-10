@@ -17,6 +17,37 @@ export enum ErrorCodes {
   INVALID_TOKEN = 'Session expired'
 }
 
+export const acceptedVideoExtensions = [
+  '.wpd', '.3g2', '.3gp', '.avi', '.flv',
+  '.h264', '.m4v', '.mkv', '.mov', '.mp4',
+  '.mpg', '.mpeg', '.rm', '.swf', '.vob',
+  '.wmv', '.quicktime'
+];
+export const acceptedTextExtensions = [
+  '.msword', '.docx', '.odt', '.pdf', '.rtf',
+  '.tex', '.txt', '.plain', '.doc', '.vnd',
+  '.x-tex'
+];
+export const acceptedImageExtensions = [
+  '.gif', '.jpg', '.jpeg', '.jfif', '.pjp',
+  '.pjpeg', '.png', '.tif', '.webp', '.bmp',
+  '.tiff'
+];
+export const acceptedOthersExtensions = [
+  '.7z', '.arj', '.deb', '.pkg', '.rar',
+  '.rpm', '.tar.gz', '.z', '.zip', '.bin',
+  '.dmg', '.iso', '.tar.xz', '.x-compress',
+  '.x-7z-compressed', '.x-arj', '.x-xar',
+  '.x-rpm', '.gzip', '.x-xz', '.octet-stream',
+  '.x-apple-diskimage', '.x-cd-image'
+];
+
+export const acceptedInputFileExtensions = [
+  ...acceptedVideoExtensions,
+  ...acceptedImageExtensions,
+  ...acceptedTextExtensions,
+  ...acceptedOthersExtensions];
+
 export const routes: Routes = [
   {
     path: '',

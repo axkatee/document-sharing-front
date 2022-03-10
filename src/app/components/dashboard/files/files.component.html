@@ -1,0 +1,48 @@
+<div class="files-block">
+  <label for="fileInput">
+    <div class="add-file-block">
+      <svg width="65"
+           height="65"
+           viewBox="0 0 65 65"
+           fill="none"
+           xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M51.4583 35.2084H35.2083V51.4584H29.7916V35.2084H13.5416V29.7917H29.7916V13.5417H35.2083V29.7917H51.4583V35.2084Z"
+          fill="white"/>
+      </svg>
+    </div>
+  </label>
+  <input type="file"
+         #fileInput
+         (change)="getFile()"
+         id="fileInput"
+         class="hidden-btn"
+         autocomplete="off"
+         [accept]="acceptedExtensions"
+  >
+  <div class="file"
+       *ngFor="let file of (files$ | async)"
+       [matTooltip]="file.name">
+    <div *ngIf="acceptedOthersExtensions.includes(file.type)"
+         class="type">
+      {{file.type}}
+    </div>
+    <img *ngIf="acceptedImageExtensions.includes(file.type)"
+         [src]="file.content"
+         alt=""
+         class="image-file"
+         loading="lazy">
+    <video *ngIf="acceptedVideoExtensions.includes(file.type)"
+           class="image-file">
+      <source [src]="file.content"
+              type="video/mp4">
+    </video>
+    <div *ngIf="acceptedTextExtensions.includes(file.type)"
+         class="text-file">
+      {{file.name}}<br>
+      <div class="underline-text">
+        click to edit
+      </div>
+    </div>
+  </div>
+</div>

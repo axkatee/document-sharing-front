@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, Observable, throwError } from 'rxjs';
-import { environment } from '@environments/environment';
 import { ErrorCodes, notificationConfig } from '@config';
 import { ApiService } from "@services/api-service/api.service";
 
@@ -45,15 +44,15 @@ export class AuthService {
   }
 
   public signIn(email: string, password: string): Observable<any> {
-    return this.apiService.get(environment.apiUrl + `auth/signin?email=${email}&password=${password}`);
+    return this.apiService.get(`auth/signin?email=${email}&password=${password}`);
   }
 
   public signUp(fullName: string, email: string, password: string, avatar?: string, displayName?: string): Observable<any> {
-    return this.apiService.post(environment.apiUrl + 'auth/signup', { fullName, displayName: displayName || '', email, password, avatarImage: avatar || '' });
+    return this.apiService.post('auth/signup', { fullName, displayName: displayName || '', email, password, avatarImage: avatar || '' });
   }
 
   public refreshToken(refreshToken: string): Observable<any> {
-    return this.apiService.get(environment.apiUrl + ``).pipe(
+    return this.apiService.get(``).pipe(
       catchError(error => {
         if (error.status === 403) {
           this.notification.open(ErrorCodes[error.error.code] || 'Session expired', 'ok', notificationConfig);

@@ -1,44 +1,7 @@
 <div class="main-block">
   <app-sidenav-menu></app-sidenav-menu>
   <div class="dashboard-page">
-    <div class="top-block">
-      <div class="title">Dashboard</div>
-      <div class="create-folder underline-text"
-           (click)="openCreateFolderModal()">
-        + Create new folder
-      </div>
-    </div>
-    <div class="folders-block">
-      <div class="folder"
-           *ngFor="let folder of (folders$ | async)  ">
-        <div class="folder-name"
-             (click)="openFolder(folder.id)">
-          <img class="folder-img"
-               ondragstart="return false;"
-               src="assets/folder.png"
-               alt="">
-          <div class="name">
-            {{folder.name}}
-          </div>
-        </div>
-        <div class="action-btns">
-          <img class="image download-img"
-               src="assets/download.png"
-               alt="">
-          <img class="image"
-               src="assets/edit.png"
-               alt=""
-               ondragstart="return false;"
-               (click)="openEditFileNameModal(folder)"
-               matTooltip="Edit name">
-          <img class="image"
-               src="assets/delete.png"
-               alt=""
-               ondragstart="return false;"
-               (click)="openDeleteFileModal(folder)"
-               matTooltip="Delete">
-        </div>
-      </div>
-    </div>
+    <app-folders></app-folders>
+    <app-files></app-files>
   </div>
 </div>

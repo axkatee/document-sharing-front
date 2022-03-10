@@ -30,7 +30,8 @@
       "@config": ["src/app/config.ts"],
       "@interfaces/*": ["src/app/interfaces/*"],
       "@modals/*": ["src/app/components/modals/*"],
-      "@components/*": ["src/app/components/*"]
+      "@components/*": ["src/app/components/*"],
+      "@directives/*": ["src/app/directives/*"]
     }
   },
   "angularCompilerOptions": {

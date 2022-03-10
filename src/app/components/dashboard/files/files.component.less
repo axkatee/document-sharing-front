@@ -1,0 +1,87 @@
+.files-block {
+  display: flex;
+  flex-direction: row;
+  margin-right: -20px;
+  margin-left: -20px;
+  flex-wrap: wrap;
+
+  .add-file-block {
+    box-sizing: border-box;
+    width: 200px;
+    height: 122px;
+    border: 5px dashed #FFFFFF;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    margin: 20px;
+
+    &:hover {
+      transition: .2s;
+      border: 5px dashed #F4D6FF;
+      box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.3);
+
+      svg {
+        path {
+          fill: #F4D6FF;
+        }
+      }
+    }
+
+    svg {
+      margin: 12% 0;
+    }
+  }
+
+  .file {
+    display: flex;
+    width: 200px;
+    height: 122px;
+    background-color: white;
+    margin: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    justify-content: center;
+
+    .type {
+      font-size: 35px;
+      font-family: Roboto, sans-serif;
+      align-self: center;
+    }
+
+    .text-file {
+      max-width: 220px;
+      max-height: 64px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 5px;
+      font-size: 20px;
+      font-family: Roboto, sans-serif;
+      text-align: center;
+      align-self: center;
+
+      .underline-text {
+        margin-top: 10px;
+        text-align: center;
+      }
+    }
+
+    .image-file {
+      box-sizing: border-box;
+      border-radius: 10px;
+      border: 2px solid white;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    &:hover {
+      box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+
+/deep/ .mat-tooltip {
+  background-color: #7E0BA6;
+}

@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from '@services/auth-service/auth.service';
-import { ApiService } from "@services/api-service/api.service";
-import { environment } from '@environments/environment';
-import { IFolder } from "@interfaces/folder-interface";
+import { ApiService } from '@services/api-service/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-  public folders$ = new BehaviorSubject<IFolder[]>(undefined);
   private readonly token: string;
 
   constructor(
@@ -19,44 +16,25 @@ export class DashboardService {
     private readonly apiService: ApiService
   ) {
     this.token = this.authService.getTokenFromLocalStorage();
-    this.getFolders();
   }
 
-  public getFolders(): void {
-    this.apiService.get(environment.apiUrl + `folders`)
-      .subscribe((folders: IFolder[]) => {
-        this.folders$.next(folders);
-      });
-    this.folders$.next([{name:'1212', id: 'dsdff'}]);
+  public getFolders(): Observable<any> {
+    return this.apiService.get(`folders`);
   }
 
   public getFolderInfo(folderId: string): Observable<any> {
-    return this.apiService.get(environment.apiUrl + `folder?folderId=${folderId}`);
+    return this.apiService.get(`folder?folderId=${folderId}`);
   }
 
-  public createFolder(folderName: string, originFolderId?: string): void {
-    this.apiService.post(environment.apiUrl + `folder`, { folderName, originFolderId: originFolderId || '' })
-      .subscribe((newFolder: IFolder) => {
-        this.folders$.next(this.folders$.getValue().concat(newFolder));
-      });
+  public createFolder(folderName: string, originFolderId?: string): Observable<any> {
+    return this.apiService.post(`folder`, { folderName, originFolderId: originFolderId || '' });
   }
 
-  public editFolderName(newName: string, folderId: string): void {
-    this.apiService.patch(environment.apiUrl + `folder/name`, { folderId, newName }).subscribe(() => {
-        let folders = this.folders$.getValue();
-        folders.map(folder => {
-        if (folder.id === folderId) {
-          folder.name = newName;
-        }
-      });
-      this.folders$.next(folders);
-    });
+  public editFolderName(newName: string, folderId: string): Observable<any> {
+    return this.apiService.patch(`folder/name`, { folderId, newName });
   }
 
-  public deleteFolder(folderId: string): void {
-    this.apiService.delete(environment.apiUrl + `folder?folderId=${folderId}`)
-      .subscribe(() => {
-        this.folders$.next(this.folders$.value.filter(folder => folder.id !== folderId));
-      });
+  public deleteFolder(folderId: string): Observable<any> {
+    return this.apiService.delete(`folder?folderId=${folderId}`);
   }
 }
