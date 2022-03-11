@@ -26,7 +26,7 @@ export class AuthService {
   public isLoggedIn(): Promise<boolean> {
     const token = this.getTokenFromLocalStorage();
     return new Promise(resolve => {
-      return token ? resolve(true) : resolve(false);
+      return resolve(!!token);
     });
   }
 

@@ -11,8 +11,6 @@ export class OpenFileModalComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public readonly data: IFile
-  ) {
-    console.log(this.data)
-  }
+  ) { }
 
 }

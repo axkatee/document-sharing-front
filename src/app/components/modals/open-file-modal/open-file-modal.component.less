@@ -1,8 +1,8 @@
-.dialog {
-  min-height: 100px;
-  min-width: 100px;
-  max-width: 800px;
-  max-height: 800px;
+.dialog-container {
+  display: flex;
+  padding: 5px;
+  box-sizing: border-box;
+  background-color: white;
 
   .close-icon {
     cursor: pointer;
@@ -17,9 +17,4 @@
     max-width: 800px;
     max-height: 800px;
   }
-}
-
-/deep/ .mat-dialog-container {
-  padding: 0;
-  border: 4px solid white;
 }

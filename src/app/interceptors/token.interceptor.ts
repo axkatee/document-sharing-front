@@ -5,16 +5,15 @@ import { AuthService } from '@services/auth-service/auth.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-  private readonly token: string;
+  private token: string;
 
   constructor(
     private readonly authService: AuthService
-  ) {
-    this.token = this.authService.getTokenFromLocalStorage();
-  }
+  ) { }
 
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.token = this.authService.getTokenFromLocalStorage();
     req = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${this.token}`)
     });
