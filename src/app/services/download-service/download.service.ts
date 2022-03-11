@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { catchError, map, Observable, of } from 'rxjs';
-import { ErrorCodes, notificationConfig } from '@config';
+import { notificationConfig } from '@config';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class DownloadService {
     return this.http.get(href, { responseType: 'blob' }).pipe(
       map(value => blob = URL.createObjectURL(value)),
       catchError(error => {
-        this.notification.open(ErrorCodes[error.error.code] || 'Can\'t download file or folder', 'ok', notificationConfig);
+        this.notification.open('Can\'t download file or folder', 'ok', notificationConfig);
         return of(href);
       })
     );

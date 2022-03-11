@@ -14,14 +14,17 @@ export enum ErrorCodes {
   USER_EXIST = 'User with this email already exist',
   VALIDATOR_ERROR = 'Incorrect input values',
   INVALID_USER = 'Invalid email or password',
-  INVALID_TOKEN = 'Session expired'
+  INVALID_TOKEN = 'Session expired',
+  FOLDER_EXIST = 'Folder with this name already exist',
+  INVALID_FOLDER = 'Folder is not exist'
 }
 
 export const acceptedVideoExtensions = [
-  '.wpd', '.3g2', '.3gp', '.avi', '.flv',
-  '.h264', '.m4v', '.mkv', '.mov', '.mp4',
-  '.mpg', '.mpeg', '.rm', '.swf', '.vob',
-  '.wmv', '.quicktime'
+  '.3g2', '.3gp', '.avi', '.flv', '.m4v',
+  '.mkv', '.mov', '.mp4', '.mpg', '.mpeg',
+  '.x-msvideo', '.quicktime', '.x-matroska',
+  '.3gpp', '.3gpp2', '.x-flv', '.x-ms-wmv',
+  '.wmv', '.vob'
 ];
 export const acceptedTextExtensions = [
   '.msword', '.docx', '.odt', '.pdf', '.rtf',
@@ -46,7 +49,8 @@ export const acceptedInputFileExtensions = [
   ...acceptedVideoExtensions,
   ...acceptedImageExtensions,
   ...acceptedTextExtensions,
-  ...acceptedOthersExtensions];
+  ...acceptedOthersExtensions
+];
 
 export const routes: Routes = [
   {
@@ -67,5 +71,5 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: 'login'
-  },
+  }
 ];

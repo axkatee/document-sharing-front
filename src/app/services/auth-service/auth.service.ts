@@ -19,27 +19,14 @@ export class AuthService {
   ) { }
 
   public getTokenFromLocalStorage(): string {
-    return localStorage.getItem('auth_data') || '';
+    const authData = localStorage.getItem('auth_data');
+    return JSON.parse(authData)?.accessToken  || '';
   }
 
   public isLoggedIn(): Promise<boolean> {
     const token = this.getTokenFromLocalStorage();
     return new Promise(resolve => {
-      if (!token) {
-        return resolve(false);
-      }
-      try {
-        const parsedToken = JSON.parse(token);
-        const { accessToken } = parsedToken;
-
-        if (!accessToken) {
-          return resolve(false);
-        } else {
-          return resolve(true);
-        }
-      } catch (e) {
-        return resolve(false);
-      }
+      return token ? resolve(true) : resolve(false);
     });
   }
 

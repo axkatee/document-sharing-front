@@ -17,6 +17,7 @@ import { IFolder } from '@interfaces/folder-interface';
 export class FoldersComponent implements OnInit {
   public folders$ = new BehaviorSubject<IFolder[]>([]);
   public title$ = new BehaviorSubject<string>('Dashboard');
+  private originFolderId: number;
 
   constructor(
     public readonly dashboardService: DashboardService,
@@ -30,15 +31,15 @@ export class FoldersComponent implements OnInit {
     this.setFolders();
   }
 
-  public openFolder(id: string): void {
-    this.router.navigate([`dashboard/${id}`]).then();
+  public openFolder(folderId: number): void {
+    this.router.navigate([`dashboard/${folderId}`]).then(() => this.setFolders());
   }
 
   public openCreateFolderModal(): void {
     const dialogRef = this.dialog.open(CreateFolderModalComponent);
     dialogRef.afterClosed().subscribe(folderName => {
       if (folderName) {
-        this.dashboardService.createFolder(folderName).subscribe((newFolder: IFolder) => {
+        this.dashboardService.createFolder(folderName, this.originFolderId).subscribe((newFolder: IFolder) => {
           this.folders$.next(this.folders$.getValue().concat(newFolder));
         });
       }
@@ -47,7 +48,7 @@ export class FoldersComponent implements OnInit {
 
   public openEditFileNameModal(folder): void {
     const folderId = folder.id;
-    const dialogRef = this.dialog.open(EditFileNameModalComponent, { data: folder });
+    const dialogRef = this.dialog.open(EditFileNameModalComponent, { data: folder.name });
     dialogRef.afterClosed().subscribe(name => {
       if (name && name !== folder.name) {
         this.dashboardService.editFolderName(name, folder.id).subscribe(() => {
@@ -64,26 +65,25 @@ export class FoldersComponent implements OnInit {
   }
 
   public openDeleteFileModal(folder): void {
-    const folderId = folder.id;
     const dialogRef = this.dialog.open(DeleteFileModalComponent, { data: folder });
     dialogRef.afterClosed().subscribe(id => {
       if (id) {
         this.dashboardService.deleteFolder(id).subscribe(() => {
-          this.folders$.next(this.folders$.value.filter(folder => folder.id !== folderId));
+          this.folders$.next(this.folders$.value.filter(folder => folder.id !== id));
         });
       }
     });
   }
 
   private setFolders(): void {
-    const folderId = this.activatedRoute.snapshot.paramMap.get('id') || '0';
-    this.dashboardService.getFolderInfo(folderId).subscribe((folders: IFolder[]) => {
-      this.folders$.next(folders);
+    const folderId = +this.activatedRoute.snapshot.paramMap.get('folderId') || 0;
+    this.dashboardService.getFolderInfo(folderId).subscribe(res => {
+      this.originFolderId = res.id;
+      this.folders$.next(res.folders as IFolder[]);
+      if (folderId !== 0) {
+        this.title$.next(res.name);
+      }
     });
-    if (folderId !== '0') {
-      this.title$.next('121212');
-    }
-    this.folders$.next([{name:'sedfas', id: 'dsdff'}]);
   }
 }
 

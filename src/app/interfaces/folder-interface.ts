@@ -1,5 +1,5 @@
 export interface IFolder {
-  id: string,
-  originFolderId?: string,
+  id: number,
+  originFolderId?: number,
   name: string
 }

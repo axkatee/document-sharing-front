@@ -17,8 +17,6 @@ import { SidenavMenuComponent } from '@components/sidenav-menu/sidenav-menu.comp
   imports: [
     CommonModule
   ],
-  providers: [
-  ],
   exports: [
     SidenavMenuComponent,
     DownloadDirective

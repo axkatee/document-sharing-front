@@ -18,23 +18,27 @@ export class DashboardService {
     this.token = this.authService.getTokenFromLocalStorage();
   }
 
-  public getFolders(): Observable<any> {
-    return this.apiService.get(`folders`);
+  public getFolderInfo(folderId: number): Observable<any> {
+    return this.apiService.get(`folders?folderId=${folderId}`);
   }
 
-  public getFolderInfo(folderId: string): Observable<any> {
-    return this.apiService.get(`folder?folderId=${folderId}`);
+  public createFolder(folderName: string, originFolderId?: number): Observable<any> {
+    return this.apiService.post(`folders`, { folderName, originFolderId: originFolderId || 0 });
   }
 
-  public createFolder(folderName: string, originFolderId?: string): Observable<any> {
-    return this.apiService.post(`folder`, { folderName, originFolderId: originFolderId || '' });
+  public editFolderName(newName: string, folderId: number): Observable<any> {
+    return this.apiService.patch(`folders`, { folderId, newName });
   }
 
-  public editFolderName(newName: string, folderId: string): Observable<any> {
-    return this.apiService.patch(`folder/name`, { folderId, newName });
+  public deleteFolder(folderId: number): Observable<any> {
+    return this.apiService.delete(`folders?folderId=${folderId}`);
   }
 
-  public deleteFolder(folderId: string): Observable<any> {
-    return this.apiService.delete(`folder?folderId=${folderId}`);
+  public editFileName(newName: string, fileId: number): Observable<any> {
+    return this.apiService.patch(`file`, { fileId, newName });
+  }
+
+  public deleteFile(fileId: number): Observable<any> {
+    return this.apiService.delete(`file?fileId=${fileId}`);
   }
 }

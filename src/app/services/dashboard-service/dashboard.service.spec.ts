@@ -20,12 +20,6 @@ describe('DashboardService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should have been called getFolders()', () => {
-    const spy = spyOn(service, 'getFolders').and.returnValue(EMPTY);
-    service.getFolders();
-    expect(spy).toHaveBeenCalled();
-  });
-
   it('should have been called getFolderInfo()', () => {
     const spy = spyOn(service, 'getFolderInfo').and.returnValue(EMPTY);
     service.getFolderInfo('12345');

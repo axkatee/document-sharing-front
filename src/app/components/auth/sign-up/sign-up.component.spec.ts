@@ -7,7 +7,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { AuthService } from '@services/auth-service/auth.service';
 import { SignUpComponent } from '@components/auth/sign-up/sign-up.component';
-import { IFile } from '@interfaces/file-interface';
+import { ITestFile } from '@interfaces/file-interface';
 import { routes } from "@config";
 
 describe('SignUpComponent', () => {
@@ -16,9 +16,9 @@ describe('SignUpComponent', () => {
   let imagePath: BehaviorSubject<string | ArrayBuffer>;
   let isUserHasAvatar: BehaviorSubject<boolean | ArrayBuffer>;
   let authServiceMock: Partial<AuthService>;
-  let file: IFile;
-  let fileWithWrongExtension: IFile;
-  let fileWithBigSize: IFile;
+  let file: ITestFile;
+  let fileWithWrongExtension: ITestFile;
+  let fileWithBigSize: ITestFile;
 
   beforeEach(async () => {
     authServiceMock = {
