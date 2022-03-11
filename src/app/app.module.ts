@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BrowserModule } from '@angular/platform-browser';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -9,7 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from "@angular/material/dialog";
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import {TokenInterceptor} from "@token-interceptor";
+import { TokenInterceptor } from "@token-interceptor";
 
 
 @NgModule({
