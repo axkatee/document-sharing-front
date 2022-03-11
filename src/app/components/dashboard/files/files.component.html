@@ -22,6 +22,7 @@
   >
   <div class="file"
        *ngFor="let file of (files$ | async)"
+       (contextmenu)="onRightClick($event, file)"
        [matTooltip]="file.name">
     <div *ngIf="acceptedOthersExtensions.includes(file.type)"
          class="type roboto-font">
@@ -30,13 +31,15 @@
     <img *ngIf="acceptedImageExtensions.includes(file.type)"
          [src]="file.content"
          class="image-file"
+         ondragstart="return false;"
+         (click)="openFile(file)"
          loading="lazy">
     <video *ngIf="acceptedVideoExtensions.includes(file.type)"
            class="image-file">
-      <source [src]="file.content"
-              type="video/mp4">
+      <source [src]="file.content" type="video/mp4">
     </video>
     <div *ngIf="acceptedTextExtensions.includes(file.type)"
+         (click)="openFile(file)"
          class="text-file roboto-font">
       {{file.name}}<br>
       <div class="underline-text">
@@ -45,3 +48,16 @@
     </div>
   </div>
 </div>
+
+<div style="visibility: hidden; position: fixed;"
+     [style.left]="menuTopLeftPosition.x"
+     [style.top]="menuTopLeftPosition.y"
+     [matMenuTriggerFor]="contextMenu">
+</div>
+<mat-menu #contextMenu="matMenu">
+  <ng-template matMenuContent let-file="file">
+    <button mat-menu-item (click)="openEditFileNameModal(file)">Edit</button>
+    <button mat-menu-item [href]="file.content" [download]="file.name">Download</button>
+    <button mat-menu-item (click)="openDeleteFileModal(file)">Delete</button>
+  </ng-template>
+</mat-menu>

@@ -3,7 +3,6 @@ import { FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormService } from '@services/form-service/form.service';
 import { IFolderModal } from '@interfaces/modal-interface';
-import { IFolder } from '@interfaces/folder-interface';
 
 @Component({
   selector: 'app-edit-file-name-modal',
@@ -16,10 +15,10 @@ export class EditFileNameModalComponent {
   constructor(
     private readonly dialogRef: MatDialogRef<IFolderModal>,
     private readonly formService: FormService,
-    @Inject(MAT_DIALOG_DATA) public readonly data: IFolder
+    @Inject(MAT_DIALOG_DATA) public readonly data: string
   ) {
     this.editNameForm = this.formService.editNameForm();
-    this.editNameForm.get('name').setValue(this.data.name);
+    this.editNameForm.get('name').setValue(this.data);
   }
 
   public editFolderName(): void {

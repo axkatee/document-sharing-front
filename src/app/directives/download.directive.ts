@@ -8,8 +8,8 @@ import { DownloadService } from "@services/download-service/download.service";
   exportAs: 'wmDownload'
 })
 export class DownloadDirective implements OnDestroy {
-  public isError = false;
-  public isInProgress = false;
+  public error = false;
+  public inProgress = false;
 
   private blob: string;
   private href: string;
@@ -29,7 +29,7 @@ export class DownloadDirective implements OnDestroy {
       URL.revokeObjectURL(this.blob);
       this.blob = undefined;
     }
-    this.isError = false;
+    this.error = false;
     this.href = href;
   }
 
@@ -38,15 +38,15 @@ export class DownloadDirective implements OnDestroy {
   }
 
   @HostListener('click') onClick() {
-    if (!this.href || this.isInProgress) return false;
-    if (this.isError || this.sameOrigin.test(this.href)) return true;
+    if (!this.href || this.inProgress) return false;
+    if (this.error || this.sameOrigin.test(this.href)) return true;
 
     this.downloadService.download(this.href, this.blob).subscribe(url => {
       this.href = url;
-      this.isInProgress = false;
+      this.inProgress = false;
     });
 
-    this.isInProgress = true;
+    this.inProgress = true;
     return false;
   }
 

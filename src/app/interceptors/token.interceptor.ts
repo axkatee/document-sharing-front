@@ -15,13 +15,10 @@ export class TokenInterceptor implements HttpInterceptor {
 
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.url.includes('login') || req.url.includes('signup')) {
-      return next.handle(req);
-    }
-
     req = req.clone({
       headers: req.headers.set('Authorization', `Bearer ${this.token}`)
     });
+
 
     return next.handle(req).pipe(
       catchError(error => {
