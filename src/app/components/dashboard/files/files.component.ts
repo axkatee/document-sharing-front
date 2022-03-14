@@ -1,15 +1,15 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from "@angular/router";
-import { DomSanitizer } from "@angular/platform-browser";
-import { MatSnackBar } from "@angular/material/snack-bar";
-import { MatMenuTrigger } from "@angular/material/menu";
-import { MatDialog } from "@angular/material/dialog";
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
-import { DashboardService } from "@services/dashboard-service/dashboard.service";
-import { EditFileNameModalComponent } from "@modals/edit-file-name-modal/edit-file-name-modal.component";
-import { DeleteFileModalComponent } from "@modals/delete-file-modal/delete-file-modal.component";
-import { OpenFileModalComponent } from "@modals/open-file-modal/open-file-modal.component";
-import { IFile } from "@interfaces/file-interface";
+import { DashboardService } from '@services/dashboard-service/dashboard.service';
+import { EditFileNameModalComponent } from '@modals/edit-file-name-modal/edit-file-name-modal.component';
+import { DeleteFileModalComponent } from '@modals/delete-file-modal/delete-file-modal.component';
+import { OpenFileModalComponent } from '@modals/open-file-modal/open-file-modal.component';
+import { IFile } from '@interfaces/file-interface';
 import {
   acceptedImageExtensions,
   acceptedInputFileExtensions,
@@ -28,7 +28,8 @@ export class FilesComponent {
   @ViewChild('fileInput') fileInput: ElementRef;
   @ViewChild(MatMenuTrigger, { static: true }) matMenuTrigger: MatMenuTrigger;
 
-  public files$ = new BehaviorSubject<IFile[]>([]);
+  @Input() files$ = new BehaviorSubject<IFile[]>([]);
+  @Input() isContentLoaded;
   public menuTopLeftPosition = { x: '0', y: '0' };
   public readonly acceptedExtensions = acceptedInputFileExtensions;
   public readonly acceptedTextExtensions = acceptedTextExtensions;

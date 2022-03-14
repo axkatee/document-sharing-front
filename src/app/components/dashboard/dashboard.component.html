@@ -1,7 +1,25 @@
 <div class="main-block">
-  <app-sidenav-menu></app-sidenav-menu>
+  <div class="sidenav-menu-block">
+    <div class="back-btn" (click)="navigateToOriginFolder()"
+         [ngClass]="{'unvisible': originFolderId === null || !isContentLoaded}">
+      <img class="back-image" src="assets/arrow.png">
+      Back
+    </div>
+    <app-sidenav-menu></app-sidenav-menu>
+  </div>
   <div class="dashboard-page">
-    <app-folders></app-folders>
-    <app-files></app-files>
+    <div class="top-block">
+      <div class="title-block">
+        <div class="title roboto-font">{{title$ | async}}</div>
+        <div class="create-folder underline-text"
+             (click)="openCreateFolderModal()">
+          + Create new folder
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <app-folders [folders$]="folders$"></app-folders>
+      <app-files [files$]="files$" [isContentLoaded]="isContentLoaded"></app-files>
+    </div>
   </div>
 </div>
