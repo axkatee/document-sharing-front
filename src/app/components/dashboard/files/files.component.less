@@ -1,19 +1,17 @@
 .files-block {
-  display: flex;
-  flex-direction: row;
-  margin-right: -20px;
-  margin-left: -20px;
-  flex-wrap: wrap;
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
 
   .add-file-block {
-    box-sizing: border-box;
-    width: 200px;
     height: 122px;
+    box-sizing: border-box;
     border: 4px dashed #FFFFFF;
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
-    margin: 20px;
 
     &:hover {
       border: 5px dashed #F4D6FF;
@@ -31,30 +29,25 @@
   }
 
   .file {
-    display: flex;
-    width: 200px;
     height: 122px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: white;
-    margin: 20px;
     border-radius: 10px;
     cursor: pointer;
-    justify-content: center;
 
     .type {
       font-size: 35px;
-      align-self: center;
+      text-align: center;
     }
 
     .text-file {
-      max-width: 220px;
-      max-height: 64px;
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
       padding: 5px;
       font-size: 20px;
-      text-align: center;
-      align-self: center;
 
       .underline-text {
         margin-top: 10px;
