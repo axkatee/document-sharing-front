@@ -49,7 +49,8 @@ export class FoldersComponent {
     dialogRef.afterClosed().subscribe(id => {
       if (id) {
         this.dashboardService.deleteFolder(id).subscribe(() => {
-          this.folders$.next(this.folders$.value.filter(folder => folder.id !== id));
+          const newFolders = this.folders$.value.filter(folder => folder.id !== id)
+          this.folders$.next(newFolders);
         });
       }
     });

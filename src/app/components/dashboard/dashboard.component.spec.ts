@@ -9,7 +9,6 @@ import { routes } from '@config';
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
-  let token: string | null;
   let store = {};
 
   beforeEach(async () => {
@@ -41,12 +40,13 @@ describe('DashboardComponent', () => {
     fixture = TestBed.createComponent(DashboardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    localStorage.setItem('auth_data', '12345');
+    localStorage.setItem('auth_data', JSON.stringify({ accessToken: '12345', refreshToken: '54321' }));
   });
 
   it('should create with token', () => {
     expect(component).toBeTruthy();
-    token = localStorage.getItem('auth_data');
-    expect(token).toBe('12345');
+    const token = localStorage.getItem('auth_data');
+    const { accessToken } = token;
+    expect(accessToken).toBe('12345');
   });
 });

@@ -18,8 +18,8 @@
       </div>
     </div>
     <div class="content">
-      <app-folders [folders$]="folders$"></app-folders>
-      <app-files [files$]="files$" [isContentLoaded]="isContentLoaded"></app-files>
+      <app-folders [folders$]="dashboardContent.folders$"></app-folders>
+      <app-files [files$]="dashboardContent.files$" [isContentLoaded]="isContentLoaded"></app-files>
     </div>
   </div>
 </div>

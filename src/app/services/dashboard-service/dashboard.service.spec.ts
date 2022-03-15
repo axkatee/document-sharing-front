@@ -22,7 +22,7 @@ describe('DashboardService', () => {
 
   it('should have been called getFolderInfo()', () => {
     const spy = spyOn(service, 'getFolderInfo').and.returnValue(EMPTY);
-    service.getFolderInfo('12345');
+    service.getFolderInfo(12345);
     expect(spy).toHaveBeenCalled();
   });
 
@@ -34,13 +34,13 @@ describe('DashboardService', () => {
 
   it('should have been called editFolderName()', () => {
     const spy = spyOn(service, 'editFolderName').and.returnValue(EMPTY);
-    service.editFolderName('name', '12345');
+    service.editFolderName('name', 12345);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should have been called deleteFolder()', () => {
     const spy = spyOn(service, 'deleteFolder').and.returnValue(EMPTY);
-    service.deleteFolder('12345');
+    service.deleteFolder(12345);
     expect(spy).toHaveBeenCalled();
   });
 });

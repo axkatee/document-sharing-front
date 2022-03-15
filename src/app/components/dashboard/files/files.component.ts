@@ -110,7 +110,8 @@ export class FilesComponent {
         this.dashboardService.deleteFile(id).subscribe(() => {
 
         });
-        this.files$.next(this.files$.value.filter(folder => folder.id !== id));
+        const newFiles = this.files$.value.filter(folder => folder.id !== id)
+        this.files$.next(newFiles);
       }
     });
   }
@@ -118,7 +119,8 @@ export class FilesComponent {
   private setTextFile(reader: FileReader, file: File, extension: string): void {
     reader.readAsText(file);
     reader.onload = () => {
-      this.files$.next([...this.files$.value, { id: 1, name: file.name, type: extension, content: reader.result }]);
+      const newFile = { id: 1, name: file.name, type: extension, content: reader.result }
+      this.files$.next([...this.files$.value, newFile]);
     }
   }
 
@@ -126,14 +128,16 @@ export class FilesComponent {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const result = this.sanitizer.bypassSecurityTrustResourceUrl(reader.result as string);
-      this.files$.next([...this.files$.value, { id: 2, name: file.name, type: extension, content: result }]);
+      const newFile = { id: 2, name: file.name, type: extension, content: result }
+      this.files$.next([...this.files$.value, newFile]);
     }
   }
 
   private setArrayFile(reader: FileReader, file: File, extension: string): void {
     reader.readAsArrayBuffer(file);
     reader.onload = () => {
-      this.files$.next([...this.files$.value, { id: 3, name: file.name, type: extension, content: reader.result }]);
+      const newFile = { id: 3, name: file.name, type: extension, content: reader.result }
+      this.files$.next([...this.files$.value, newFile]);
     }
   }
 }

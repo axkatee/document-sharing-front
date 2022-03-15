@@ -14,8 +14,10 @@ import { IFile } from '@interfaces/file-interface';
   styleUrls: ['./dashboard.component.less']
 })
 export class DashboardComponent implements OnInit {
-  public folders$ = new BehaviorSubject<IFolder[]>([]);
-  public files$ = new BehaviorSubject<IFile[]>([]);
+  public dashboardContent = {
+    folders$: new BehaviorSubject<IFolder[]>([]),
+    files$: new BehaviorSubject<IFile[]>([])
+  }
   public title$ = new BehaviorSubject<string>('');
   public folderId: number;
   public originFolderId: number;
@@ -34,7 +36,10 @@ export class DashboardComponent implements OnInit {
   }
 
   public navigateToOriginFolder(): void {
-    this.router.navigate([`dashboard/${this.originFolderId}`]).then();
+    this.originFolderId === 0
+      ? this.router.navigate([`dashboard`]).then()
+      : this.router.navigate([`dashboard/${this.originFolderId}`]).then();
+
   }
 
   public openCreateFolderModal(): void {
@@ -42,7 +47,8 @@ export class DashboardComponent implements OnInit {
     dialogRef.afterClosed().subscribe(folderName => {
       if (folderName) {
         this.dashboardService.createFolder(folderName, this.folderId).subscribe((newFolder: IFolder) => {
-          this.folders$.next(this.folders$.getValue().concat(newFolder));
+          const newFolders = [...this.dashboardContent.folders$.getValue(), newFolder];
+          this.dashboardContent.folders$.next(newFolders);
         });
       }
     });
@@ -52,8 +58,8 @@ export class DashboardComponent implements OnInit {
     this.folderId = +this.activatedRoute.snapshot.paramMap.get('folderId') || 0;
     this.dashboardService.getFolderInfo(this.folderId).subscribe(res => {
       this.originFolderId = res.originFolderId;
-      this.folders$.next(res.folders as IFolder[]);
-      this.files$.next(res.files as IFile[]);
+      this.dashboardContent.folders$.next(res.folders as IFolder[]);
+      this.dashboardContent.files$.next(res.files as IFile[]);
       if (this.folderId !== 0) {
         this.title$.next(res.name);
       } else {

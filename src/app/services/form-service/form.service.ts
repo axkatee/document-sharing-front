@@ -16,7 +16,7 @@ export class FormService {
   private readonly emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   private readonly noSpacesRegex = /^\S*$/;
   private readonly spaceBetweenWordsRegex = /^([A-Za-z]+ )+[A-Za-z]+$|^[A-Za-z]+$/;
-  private readonly spaceBetweenWordsAndAllowNumbersRegex = /^([a-zA-Z0-9]+ )+[a-zA-Z0-9]+$|^[a-zA-Z0-9]+$/;
+  private readonly spaceBetweenWordsAllowNumbersAndSymbolsRegex = /^([a-zA-Z0-9\()*_=-]+ )+[a-zA-Z0-9\()*_=-]+$|^[a-zA-Z0-9\()*_=-]+$/;
 
   constructor() { }
 
@@ -46,7 +46,7 @@ export class FormService {
         Validators.maxLength(32)
       ]),
       displayName: new FormControl('', [
-        Validators.pattern(this.spaceBetweenWordsAndAllowNumbersRegex),
+        Validators.pattern(this.spaceBetweenWordsAllowNumbersAndSymbolsRegex),
         Validators.minLength(4),
         Validators.maxLength(32)
       ]),
@@ -78,7 +78,7 @@ export class FormService {
     return new FormBuilder().group({
       name: new FormControl('', [
         Validators.required,
-        Validators.pattern(this.noSpacesRegex),
+        Validators.pattern(this.spaceBetweenWordsAllowNumbersAndSymbolsRegex),
         Validators.minLength(4),
         Validators.maxLength(32)
       ])
