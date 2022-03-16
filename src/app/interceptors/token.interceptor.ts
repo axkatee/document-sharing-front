@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { catchError, Observable, throwError } from "rxjs";
+import { catchError, Observable, switchMap, throwError } from "rxjs";
 import { AuthService } from '@services/auth-service/auth.service';
 
 @Injectable()
@@ -34,10 +34,12 @@ export class TokenInterceptor implements HttpInterceptor {
     const authData = localStorage.getItem('auth_data')
     const refreshToken = JSON.parse(authData).refreshToken;
 
-    this.authService.refreshToken(refreshToken).subscribe(res => {
-      localStorage.removeItem('auth_data');
+    return this.authService.refreshToken(refreshToken).pipe(switchMap(res => {
       localStorage.setItem('auth_data', JSON.stringify(res.authData));
-    });
-    return next.handle(req);
+      const newRequest = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${res.authData.accessToken}`)
+      });
+      return next.handle(newRequest);
+    }));
   }
 }
