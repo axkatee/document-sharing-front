@@ -30,11 +30,7 @@ export class SignUpComponent {
   }
 
   public signUp(): void {
-    const fullName = this.registrationForm.controls['fullName'].value.toString();
-    const displayName = this.registrationForm.controls['displayName'].value.toString();
-    const email = this.registrationForm.controls['email'].value.toString();
-    const password = this.registrationForm.controls['password'].value.toString();
-
+    const { fullName, displayName, email, password } = this.registrationForm.getRawValue();
     this.authService.signUp(fullName, email, password, this.imagePath.value.toString(), displayName).subscribe(() => {
       this.navigateToSignIn();
     });

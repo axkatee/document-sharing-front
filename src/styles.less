@@ -124,3 +124,41 @@ button.mat-menu-item {
 .unvisible {
   visibility: hidden;
 }
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  padding: 15px;
+  background-color: #f4dcfd;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 8px;
+
+  .folder-name {
+    display: flex;
+    align-items: center;
+    width: 90px;
+    justify-content: space-between;
+
+    .folder-img {
+      width: 27px;
+      height: 27px;
+      margin-right: 13px;
+    }
+
+    .name {
+      font-size: 19px;
+    }
+  }
+}
+
+.drop-placeholder {
+  background: transparent;
+  min-height: 50px;
+
+  &:not(&:last-child) {
+    margin-bottom: 20px;
+  }
+}
