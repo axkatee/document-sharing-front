@@ -39,11 +39,12 @@ export class AuthService {
   }
 
   public refreshToken(refreshToken: string): Observable<any> {
-    return this.apiService.get(``).pipe(
+    return this.apiService.post(`auth/token`, { refreshToken }).pipe(
       catchError(error => {
         if (error.status === 403) {
-          this.notification.open(ErrorCodes[error.error.code] || 'Session expired', 'ok', notificationConfig);
+          this.notification.open('Session expired', 'ok', notificationConfig);
           this.router.navigate(['login']).then();
+          localStorage.removeItem('auth_data')
         }
         return throwError(error);
       }));

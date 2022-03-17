@@ -1,6 +1,10 @@
-<div class="folders-block">
+<div cdkDropList class="folders-block" (cdkDropListDropped)="dropFolder($event)">
   <div class="folder"
+       cdkDrag
        *ngFor="let folder of (folders$ | async)">
+    <div class="drop-placeholder"
+         *cdkDragPlaceholder>
+    </div>
     <div class="folder-name"
          (click)="openFolder(folder.id)">
       <img class="folder-img"

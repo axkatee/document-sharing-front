@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { DashboardService } from '@services/dashboard-service/dashboard.service';
@@ -21,6 +22,10 @@ export class FoldersComponent {
     private readonly router: Router,
     private readonly dialog: MatDialog
   ) { }
+
+  public dropFolder(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.folders$.getValue(), event.previousIndex, event.currentIndex);
+  }
 
   public openFolder(folderId: number): void {
     this.router.navigate([`dashboard/${folderId}`]).then();
