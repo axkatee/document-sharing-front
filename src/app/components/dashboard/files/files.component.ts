@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -24,12 +24,13 @@ import {
   templateUrl: './files.component.html',
   styleUrls: ['./files.component.less']
 })
-export class FilesComponent {
+export class FilesComponent implements AfterViewInit {
   @ViewChild('fileInput') fileInput: ElementRef;
   @ViewChild(MatMenuTrigger, { static: true }) matMenuTrigger: MatMenuTrigger;
 
   @Input() files$ = new BehaviorSubject<IFile[]>([]);
   @Input() isContentLoaded;
+
   public menuTopLeftPosition = { x: '0', y: '0' };
   public readonly acceptedExtensions = acceptedInputFileExtensions;
   public readonly acceptedTextExtensions = acceptedTextExtensions;
@@ -38,6 +39,10 @@ export class FilesComponent {
   public readonly acceptedOthersExtensions = acceptedOthersExtensions;
 
   private folderId: number;
+  private fileElements = [];
+  private startIndex: number;
+  private endIndex: number;
+  private startElement: IFile;
 
   constructor(
     public readonly dashboardService: DashboardService,
@@ -48,6 +53,32 @@ export class FilesComponent {
     private readonly dialog: MatDialog
   ) {
     this.folderId = +this.activatedRoute.snapshot.paramMap.get('folderId') || 0;
+  }
+
+  ngAfterViewInit() {
+    this.files$.subscribe(files => {
+      this.fileElements = [];
+      if (files?.length) {
+        files.forEach((file, index) => {
+          const element = document.getElementsByClassName(`item-${index}`)[0];
+          this.fileElements.push(
+            element
+          );
+        })
+        this.fileElements = this.fileElements.map((el: HTMLElement, index) => {
+          try {
+            const data = el.getClientRects();
+            return {
+              centerX: data.item(0).left + 100,
+              centerY: data.item(0).top + 100,
+              index
+            }
+          } catch (e) {
+            return el;
+          }
+        });
+      }
+    });
   }
 
   public getFileFromUserPC(file = this.fileInput.nativeElement.files[0]): void {
@@ -83,19 +114,19 @@ export class FilesComponent {
 
   public openEditFileNameModal(file: IFile): void {
     const fileId = file.id;
-    const fileType = `.${file.name.split('.').pop()}`;
-    const fileName = file.name.split(fileType)[0]
+    const fileType = `.${file.displayName.split('.').pop()}`;
+    const fileName = file.displayName.split(fileType)[0]
 
     const dialogRef = this.dialog.open(EditFileNameModalComponent, { data: fileName });
     dialogRef.afterClosed().subscribe(name => {
-      if (name && name !== file.name) {
+      if (name && name !== file.displayName) {
         this.dashboardService.editFileName(name, file.id).subscribe(() => {
 
         });
         let files = this.files$.getValue();
         files.map(file => {
           if (file.id === fileId) {
-            file.name = name + fileType;
+            file.displayName = name + fileType;
           }
         });
         this.files$.next(files);
@@ -110,17 +141,63 @@ export class FilesComponent {
         this.dashboardService.deleteFile(id).subscribe(() => {
 
         });
-        const newFiles = this.files$.value.filter(folder => folder.id !== id)
+        const newFiles = this.files$.getValue().filter(file => file.id !== id)
         this.files$.next(newFiles);
       }
     });
   }
 
+  public onDragStart(event: DragEvent): void {
+    const fileElement = this.getFileElement(event);
+    if (!fileElement) return;
+    this.startIndex = fileElement.index || 0;
+    this.startElement = this.files$.getValue()[this.startIndex];
+  }
+
+  public onDragEnter(event: DragEvent): void {
+    const fileElement = this.getFileElement(event);
+    if (!fileElement) return;
+
+    if (this.files$.getValue().find(el => el.id === 0)) {
+      this.files$.next(this.files$.getValue().filter(el => el.id !== 0));
+    }
+
+    this.endIndex = fileElement.index || 0;
+
+
+    const emptyBlock: IFile = { id: 0, displayName: '', type: 'placeholder' };
+    let newFiles = this.files$.getValue();
+    newFiles.splice(this.endIndex, 0, ...[emptyBlock]);
+    this.files$.next(newFiles);
+  }
+
+  public onDrop(event: DragEvent): void {
+    let newFiles = this.files$.getValue();
+    const fileElement = this.getFileElement(event);
+    if (!fileElement) {
+      newFiles = newFiles.filter(file => file.type !== 'placeholder');
+      this.files$.next(newFiles);
+      return;
+    }
+    this.endIndex = fileElement.index || 0;
+    newFiles = newFiles.map(el => {
+      if (el.type === 'placeholder') {
+        el = this.startElement;
+        return el;
+      }
+      return el;
+    });
+    newFiles = newFiles.filter((file, index) =>
+      JSON.stringify(file) !== JSON.stringify(this.startElement) || this.endIndex === index
+    );
+    this.files$.next(newFiles);
+  }
+
   private setTextFile(reader: FileReader, file: File, extension: string): void {
     reader.readAsText(file);
     reader.onload = () => {
-      const newFile = { id: 1, name: file.name, type: extension, content: reader.result }
-      this.files$.next([...this.files$.value, newFile]);
+      const newFile = { id: Date.now(), displayName: file.name, type: extension, content: reader.result }
+      this.files$.next([...this.files$.getValue(), newFile]);
     }
   }
 
@@ -128,16 +205,28 @@ export class FilesComponent {
     reader.readAsDataURL(file);
     reader.onload = () => {
       const result = this.sanitizer.bypassSecurityTrustResourceUrl(reader.result as string);
-      const newFile = { id: 2, name: file.name, type: extension, content: result }
-      this.files$.next([...this.files$.value, newFile]);
+      const newFile = { id: Date.now(), displayName: file.name, type: extension, content: result }
+      this.files$.next([...this.files$.getValue(), newFile]);
     }
   }
 
   private setArrayFile(reader: FileReader, file: File, extension: string): void {
     reader.readAsArrayBuffer(file);
     reader.onload = () => {
-      const newFile = { id: 3, name: file.name, type: extension, content: reader.result }
-      this.files$.next([...this.files$.value, newFile]);
+      const newFile = { id: Date.now(), displayName: file.name, type: extension, content: reader.result }
+      this.files$.next([...this.files$.getValue(), newFile]);
     }
+  }
+
+  private getFileElement(event: DragEvent): any {
+    const fileElement = this.fileElements.find((el: any) => {
+      const elementX = Math.abs(el?.centerX - event.clientX) <= 100 || false;
+      const elementY = Math.abs(el?.centerY - event.clientY) <= 61 || false;
+      if (elementX && elementY) {
+        return el;
+      }
+    });
+    this.files$.value
+    return fileElement;
   }
 }

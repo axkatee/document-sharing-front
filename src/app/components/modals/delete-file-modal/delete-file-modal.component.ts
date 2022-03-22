@@ -10,11 +10,14 @@ import { IFile } from "@interfaces/file-interface";
   styleUrls: ['./delete-file-modal.component.less']
 })
 export class DeleteFileModalComponent {
+  public name: string;
 
   constructor(
     private readonly dialogRef: MatDialogRef<IFolderModal>,
     @Inject(MAT_DIALOG_DATA) public readonly data: IFolder | IFile
-  ) { }
+  ) {
+    this.name = 'displayName' in data ? data.displayName: data.name;
+  }
 
   public closeDialog(id?: number) {
     this.dialogRef.close(id);

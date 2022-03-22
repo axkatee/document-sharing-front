@@ -20,28 +20,34 @@
          autocomplete="off"
          [accept]="acceptedExtensions"
   >
-  <div class="file"
-       *ngFor="let file of (files$ | async)"
+  <div class="file item-{{i}}"
+       *ngFor="let file of (files$ | async); index as i"
        (contextmenu)="onRightClick($event, file)"
-       [matTooltip]="file.name">
+       draggable="true"
+       (dragstart)="onDragStart($event)"
+       (dragend)="onDrop($event)"
+       (dragover)="onDragEnter($event)">
+    <div class="placeholder"
+         *ngIf="file.type === 'placeholder'">
+    </div>
     <div *ngIf="acceptedOthersExtensions.includes(file.type)"
          class="type roboto-font">
       {{file.type}}
     </div>
     <img *ngIf="acceptedImageExtensions.includes(file.type)"
-         [src]="file.content"
+         [src]="file?.content"
          class="image-file"
-         ondragstart="return false;"
+         draggable="true"
          (click)="openFile(file)"
          loading="lazy">
     <video *ngIf="acceptedVideoExtensions.includes(file.type)"
            class="image-file">
-      <source [src]="file.content" type="image/png">
+      <source [src]="file?.content" type="image/png">
     </video>
     <div *ngIf="acceptedTextExtensions.includes(file.type)"
          (click)="openFile(file)"
          class="text-file roboto-font">
-      {{file.name}}<br>
+      {{file.displayName}}<br>
       <div class="underline-text">
         click to edit
       </div>
@@ -57,7 +63,7 @@
 <mat-menu #contextMenu="matMenu">
   <ng-template matMenuContent let-file="file">
     <button mat-menu-item (click)="openEditFileNameModal(file)">Edit</button>
-    <button mat-menu-item [href]="file.content" [download]="file.name">Download</button>
+    <button mat-menu-item [href]="file?.content" [download]="file.displayName">Download</button>
     <button mat-menu-item (click)="openDeleteFileModal(file)">Delete</button>
   </ng-template>
 </mat-menu>

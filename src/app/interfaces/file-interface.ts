@@ -11,7 +11,8 @@ export interface ITestFile {
 
 export interface IFile {
   id: number,
-  name: string,
+  creatorId?: number,
+  displayName: string,
   type: string,
-  content: ArrayBuffer | string | SafeResourceUrl
+  content?: ArrayBuffer | string | SafeResourceUrl
 }
